@@ -2,101 +2,121 @@
   {
     "service": "Laptop Cleaning",
     "time": "1.5 hours",
-    "cost": 180
+    "cost": 180,
+    "description": "Professional cleaning of the laptop's internal components to improve performance and longevity."
   },
   {
     "service": "Network Troubleshooting",
     "time": "2 hours",
-    "cost": 240
+    "cost": 240,
+    "description": "Diagnosing and resolving issues with network connectivity, including wired and wireless networks."
   },
   {
     "service": "Data Transfer",
     "time": "1.5 hours",
-    "cost": 180
+    "cost": 180,
+    "description": "Securely transferring data from one device to another, ensuring all important files are moved."
   },
   {
     "service": "OS Update",
     "time": "1 hour",
-    "cost": 120
+    "cost": 120,
+    "description": "Updating the operating system to the latest version, including installing necessary patches and drivers."
   },
   {
     "service": "Macbook Pro Repair",
     "time": "2 hours",
-    "cost": 240
+    "cost": 240,
+    "description": "Repairing common hardware and software issues on MacBook Pro devices."
   },
   {
     "service": "Web Design",
     "time": "10 hours",
-    "cost": 1200
+    "cost": 1200,
+    "description": "Designing a professional, responsive website tailored to the client's needs."
   },
   {
     "service": "PC Diagnostic",
     "time": "0.5 hours",
-    "cost": 60
+    "cost": 60,
+    "description": "Running diagnostics to identify issues affecting PC performance."
   },
   {
     "service": "Email Setup",
     "time": "0.5 hours",
-    "cost": 60
+    "cost": 60,
+    "description": "Setting up email accounts, including configuration of email clients and security settings."
   },
   {
     "service": "Cybersecurity Consultation",
     "time": "2 hours",
-    "cost": 240
+    "cost": 240,
+    "description": "Providing expert advice on how to secure your digital environment from threats."
   },
   {
     "service": "Network Server Setup",
     "time": "3 hours",
-    "cost": 360
+    "cost": 360,
+    "description": "Installing and configuring a network server, including setup of user accounts and permissions."
   },
   {
     "service": "Cloud Backup Setup",
     "time": "1 hour",
-    "cost": 120
+    "cost": 120,
+    "description": "Configuring cloud backup services for automated data protection and recovery."
   },
   {
     "service": "VPN Installation",
     "time": "1 hour",
-    "cost": 120
+    "cost": 120,
+    "description": "Setting up a Virtual Private Network (VPN) to secure internet connections and protect online privacy."
   },
   {
     "service": "Website Troubleshooting",
     "time": "2 hours",
-    "cost": 240
+    "cost": 240,
+    "description": "Identifying and fixing issues with website functionality, performance, and security."
   },
   {
     "service": "Diagnostic and Consultation",
     "time": "1 hour",
-    "cost": 120
+    "cost": 120,
+    "description": "Providing a comprehensive system diagnostic and consultation on necessary improvements."
   },
   {
     "service": "Security Setup",
     "time": "3 hours",
-    "cost": 360
+    "cost": 360,
+    "description": "Setting up security measures to protect your system from unauthorized access and threats."
   },
   {
     "service": "Password Reset",
     "time": "1 hour",
-    "cost": 120
+    "cost": 120,
+    "description": "Assisting with resetting forgotten passwords and ensuring account security."
   },
   {
     "service": "IT Consulting",
     "time": "1 hour",
-    "cost": 120
+    "cost": 120,
+    "description": "Consulting on IT strategies and solutions to improve business efficiency."
   },
   {
     "service": "BIOS Update",
     "time": "1 hour",
-    "cost": 120
+    "cost": 120,
+    "description": "Updating the BIOS to ensure hardware compatibility and improve system stability."
   },
   {
     "service": "System Training",
     "time": "2 hours",
-    "cost": 240
+    "cost": 240,
+    "description": "Providing training on using software systems effectively."
   },
   {
     "service": "Printer Troubleshooting",
     "time": "1.5 hours",
-    "cost": 180
+    "cost": 180,
+    "description": "Resolving issues with printer functionality, including setup and configuration."
   }
 ]
