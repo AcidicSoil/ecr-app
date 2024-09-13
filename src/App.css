@@ -1,12 +1,8 @@
-/* Global Styles */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f7fafc;
   color: #1a202c;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .App {
@@ -16,128 +12,50 @@ body {
   flex-direction: column;
   min-height: 100vh;
   padding: 2rem;
-  text-align: center;
 }
 
-/* Card Styles */
-.card {
-  background: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  padding: 2rem;
-  width: 100%;
-  max-width: 32rem;
-  margin: 0 auto;
-  text-align: center;
-}
-
-/* Container Styles */
-.container {
+.new-buttons-section {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 32rem;
-  margin-top: 20px;
+  justify-content: center;
+  margin-bottom: 1.5rem;
 }
 
-/* Button Styles */
-button {
+.btn-new-add-item {
   background-color: #4c51bf;
   color: white;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
   border: none;
   border-radius: 0.25rem;
-  padding: 0.5rem 1rem;
-  margin-top: 1rem;
   cursor: pointer;
-  transition: background-color 0.2s;
 }
 
-button:hover {
-  background-color: #667eea;
-}
-
-/* Input Styles */
-input[type='text'],
-input[type='number'] {
-  border: 2px solid #e2e8f0;
+.btn-new-calculate {
+  background-color: #48bb78;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
   border-radius: 0.25rem;
-  padding: 0.5rem 0.75rem;
-  margin-top: 0.5rem;
-  width: calc(100% - 1.5rem);
-  box-sizing: border-box;
+  cursor: pointer;
 }
 
-input[type='text']:focus,
-input[type='number']:focus {
-  border-color: #4c51bf;
-  outline: none;
+.btn-new-add-item:hover, .btn-new-calculate:hover {
+  opacity: 0.8;
 }
 
-/* Heading Styles */
-h1 {
-  font-size: 1.75rem;
+.calculation-details {
+  background-color: #282c34;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  color: white;
   margin-bottom: 1rem;
 }
 
-h2 {
-  font-size: 1.25rem;
+.available-services {
   margin-top: 2rem;
-  margin-bottom: 0.5rem;
 }
 
-/* Paragraph Styles */
-p {
-  font-size: 1rem;
-  color: #4a5568;
-}
-
-/* Layout Container Styles */
-.layout-container {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-/* Calculation Container Styles */
-.calculation-container {
-  width: 25%;
-  padding: 20px;
-  background-color: #1e1e1e;
-  color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 10;
-}
-
-/* Main Content Styles */
-.main-content {
-  flex-grow: 1;
-  margin-left: 30%;
-  padding: 20px;
-  background-color: #282c34;
-  color: #ffffff;
-  border-radius: 8px;
-}
-
-/* Details List Styles */
-.details-list {
-  width: 100%;
-  max-height: 400px;
-  overflow-y: auto;
-}
-
-/* Detail Item Styles */
-.detail-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.detail-item button {
-  margin-top: 5px;
+.service-item {
+  margin-bottom: 1rem;
+  font-weight: bold;
 }

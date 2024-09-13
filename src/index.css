@@ -2,13 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom global styles */
-body {
-  @apply bg-gray-100 text-gray-900;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Global reset for margin, padding, and box sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  @apply font-mono text-sm;
+/* Basic body styling */
+body {
+  @apply bg-gray-100 text-gray-900; /* Soft background and default text color */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: 1rem;
+}
+
+/* Ensure responsiveness of headings */
+h1, h2, h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Flex and Grid Utilities for General Components */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 1rem;
 }
