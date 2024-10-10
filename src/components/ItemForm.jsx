@@ -1,129 +1,155 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import TextField from '@mui/material/TextField';
-import { Box, Container, IconButton } from '@mui/material';
-import { useSpring, animated } from '@react-spring/web'; // Import from react-spring
+import { Box, Container, IconButton, Button, FormControlLabel, Checkbox, Card, CardContent } from '@mui/material';
+import { useTransition, animated } from '@react-spring/web';
 
-function ItemForm({ onCalculateWeightedSum }) {
-  const [items, setItems] = useState([{ number: '', quantity: 1 }]);
-  const [includeHardware, setIncludeHardware] = useState(false);
-  const [includeSoftware, setIncludeSoftware] = useState(false);
-  const [hardwareHours, setHardwareHours] = useState(1);
-  const [softwareHours, setSoftwareHours] = useState(1);
+function ItemForm({ items, setItems, onCalculateWeightedSum }) {
+  const [includeHardware, setIncludeHardware] = useState(() => {
+    return JSON.parse(localStorage.getItem('includeHardware')) || false;
+  });
+  const [includeSoftware, setIncludeSoftware] = useState(() => {
+    return JSON.parse(localStorage.getItem('includeSoftware')) || false;
+  });
+  const [hardwareHours, setHardwareHours] = useState(() => {
+    return parseInt(localStorage.getItem('hardwareHours')) || 1;
+  });
+  const [softwareHours, setSoftwareHours] = useState(() => {
+    return parseInt(localStorage.getItem('softwareHours')) || 1;
+  });
+  const [errors, setErrors] = useState({});
 
-  // Button hover animations using react-spring
-  const [hoveredAdd, setHoveredAdd] = useState(false);
-  const [hoveredRemove, setHoveredRemove] = useState(false);
-  const [hoveredCalculate, setHoveredCalculate] = useState(false);
+  useEffect(() => {
+    localStorage.setItem('includeHardware', JSON.stringify(includeHardware));
+  }, [includeHardware]);
 
-  // Checkbox animations using react-spring
-  const [hoveredHardwareCheckbox, setHoveredHardwareCheckbox] = useState(false);
-  const [hoveredSoftwareCheckbox, setHoveredSoftwareCheckbox] = useState(false);
+  useEffect(() => {
+    localStorage.setItem('includeSoftware', JSON.stringify(includeSoftware));
+  }, [includeSoftware]);
 
-  const springPropsAdd = useSpring({
-    transform: hoveredAdd ? 'scale(1.1)' : 'scale(1)',
-    boxShadow: hoveredAdd ? '0px 5px 15px rgba(0,0,0,0.3)' : '0px 2px 8px rgba(0,0,0,0.2)',
+  useEffect(() => {
+    localStorage.setItem('hardwareHours', hardwareHours.toString());
+  }, [hardwareHours]);
+
+  useEffect(() => {
+    localStorage.setItem('softwareHours', softwareHours.toString());
+  }, [softwareHours]);
+
+  const itemTransitions = useTransition(items, {
+    from: { opacity: 0, transform: 'translateY(20px)' },
+    enter: { opacity: 1, transform: 'translateY(0px)' },
+    leave: { opacity: 0, transform: 'translateY(-20px)' },
+    keys: item => item.id,
   });
 
-  const springPropsRemove = useSpring({
-    transform: hoveredRemove ? 'scale(1.1)' : 'scale(1)',
-    boxShadow: hoveredRemove ? '0px 5px 15px rgba(0,0,0,0.3)' : '0px 2px 8px rgba(0,0,0,0.2)',
-  });
+  const validateInput = useCallback((type, value) => {
+    if (type === 'number') {
+      if (value === '') return '';
+      const num = parseFloat(value);
+      if (isNaN(num) || num < 0) return 'Price must be a positive number';
+    } else if (type === 'quantity') {
+      const num = parseInt(value, 10);
+      if (isNaN(num) || num < 1) return 'Quantity must be at least 1';
+    }
+    return '';
+  }, []);
 
-  const springPropsCalculate = useSpring({
-    transform: hoveredCalculate ? 'scale(1.1)' : 'scale(1)',
-    boxShadow: hoveredCalculate ? '0px 5px 15px rgba(0,0,0,0.3)' : '0px 2px 8px rgba(0,0,0,0.2)',
-  });
+  const handleChange = useCallback((id, type, value) => {
+    const error = validateInput(type, value);
+    setErrors(prev => ({ ...prev, [id]: { ...prev[id], [type]: error } }));
 
-  // Checkbox animations
-  const springPropsHardwareCheckbox = useSpring({
-    transform: hoveredHardwareCheckbox ? 'scale(1.2)' : 'scale(1)',
-  });
-
-  const springPropsSoftwareCheckbox = useSpring({
-    transform: hoveredSoftwareCheckbox ? 'scale(1.2)' : 'scale(1)',
-  });
-
-  const handleAddItem = () => {
-    setItems([...items, { number: '', quantity: 1 }]);
-  };
-
-  const handleRemoveItem = (index) => {
-    const newItems = [...items];
-    newItems.splice(index, 1);
-    setItems(newItems);
-  };
-
-  const handleChange = (index, type, value) => {
-    const validValue = type === 'number' ? Math.max(0, Number(value)) : Math.max(1, parseInt(value, 10));
-
-    const newItems = items.map((item, i) => {
-      if (i === index) {
-        return { ...item, [type]: validValue };
+    setItems(prevItems => prevItems.map(item => {
+      if (item.id === id) {
+        return { ...item, [type]: value };
       }
       return item;
+    }));
+  }, [validateInput, setItems]);
+
+  const handleAddItem = () => {
+    const newId = Date.now();
+    setItems(prev => [...prev, { id: newId, number: '', quantity: 1 }]);
+    setErrors(prev => ({ ...prev, [newId]: {} }));
+  };
+
+  const handleRemoveItem = (id) => {
+    setItems(items.filter(item => item.id !== id));
+    setErrors(prev => {
+      const newErrors = { ...prev };
+      delete newErrors[id];
+      return newErrors;
     });
-    setItems(newItems);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const hasErrors = Object.values(errors).some(itemErrors => 
+      Object.values(itemErrors).some(error => error !== '')
+    );
+    if (hasErrors) {
+      alert('Please correct the errors before submitting.');
+      return;
+    }
+    if (items.some(item => item.number === '')) {
+      alert('Please fill in all price fields before submitting.');
+      return;
+    }
     onCalculateWeightedSum(items, includeHardware, hardwareHours, includeSoftware, softwareHours);
   };
 
   return (
     <Container maxWidth="sm">
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-        {items.map((item, index) => (
-          <Box key={index} sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-            <TextField
-              label="Price"
-              type="number"
-              value={item.number}
-              onChange={(e) => handleChange(index, 'number', e.target.value)}
-              variant="outlined"
-              size="small"
-              sx={{ mr: 1 }}
-            />
-            <TextField
-              label="Quantity"
-              type="number"
-              value={item.quantity}
-              onChange={(e) => handleChange(index, 'quantity', e.target.value)}
-              variant="outlined"
-              size="small"
-              sx={{ mr: 1 }}
-            />
-
-            {/* Animated Remove IconButton */}
-            <animated.div
-              style={springPropsRemove}
-              onMouseEnter={() => setHoveredRemove(true)}
-              onMouseLeave={() => setHoveredRemove(false)}
-            >
-              <IconButton onClick={() => handleRemoveItem(index)} color="error">
-                <RemoveCircleOutlineIcon />
-              </IconButton>
-            </animated.div>
-          </Box>
+        {itemTransitions((styles, item) => (
+          <animated.div style={styles}>
+            <Card sx={{ mb: 2 }}>
+              <CardContent>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <TextField
+                    label="Price"
+                    type="number"
+                    value={item.number}
+                    onChange={(e) => handleChange(item.id, 'number', e.target.value)}
+                    variant="outlined"
+                    size="small"
+                    sx={{ mr: 1, flexGrow: 1 }}
+                    inputProps={{ min: 0, step: "0.01" }}
+                    error={!!errors[item.id]?.number}
+                    helperText={errors[item.id]?.number}
+                  />
+                  <TextField
+                    label="Quantity"
+                    type="number"
+                    value={item.quantity}
+                    onChange={(e) => handleChange(item.id, 'quantity', e.target.value)}
+                    variant="outlined"
+                    size="small"
+                    sx={{ mr: 1, flexGrow: 1 }}
+                    inputProps={{ min: 1 }}
+                    error={!!errors[item.id]?.quantity}
+                    helperText={errors[item.id]?.quantity}
+                  />
+                  <IconButton onClick={() => handleRemoveItem(item.id)} color="error">
+                    <RemoveCircleOutlineIcon />
+                  </IconButton>
+                </Box>
+              </CardContent>
+            </Card>
+          </animated.div>
         ))}
 
-        {/* Animated Checkbox for Include Hardware */}
-        <animated.div
-          style={springPropsHardwareCheckbox}
-          onMouseEnter={() => setHoveredHardwareCheckbox(true)}
-          onMouseLeave={() => setHoveredHardwareCheckbox(false)}
-        >
-          <label>
-            <input
-              type="checkbox"
-              checked={includeHardware}
-              onChange={() => setIncludeHardware(!includeHardware)}
-            />
-            Include Hardware Labor
-          </label>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={includeHardware}
+                onChange={() => setIncludeHardware(!includeHardware)}
+              />
+            }
+            label="Include Hardware Labor"
+          />
           {includeHardware && (
             <TextField
               label="Hours"
@@ -135,22 +161,18 @@ function ItemForm({ onCalculateWeightedSum }) {
               sx={{ ml: 2 }}
             />
           )}
-        </animated.div>
+        </Box>
 
-        {/* Animated Checkbox for Include Software */}
-        <animated.div
-          style={springPropsSoftwareCheckbox}
-          onMouseEnter={() => setHoveredSoftwareCheckbox(true)}
-          onMouseLeave={() => setHoveredSoftwareCheckbox(false)}
-        >
-          <label>
-            <input
-              type="checkbox"
-              checked={includeSoftware}
-              onChange={() => setIncludeSoftware(!includeSoftware)}
-            />
-            Include Software Labor
-          </label>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={includeSoftware}
+                onChange={() => setIncludeSoftware(!includeSoftware)}
+              />
+            }
+            label="Include Software Labor"
+          />
           {includeSoftware && (
             <TextField
               label="Hours"
@@ -162,37 +184,33 @@ function ItemForm({ onCalculateWeightedSum }) {
               sx={{ ml: 2 }}
             />
           )}
-        </animated.div>
+        </Box>
 
-        {/* Animated Add Item Button */}
-        <animated.button
-          style={springPropsAdd}
-          onMouseEnter={() => setHoveredAdd(true)}
-          onMouseLeave={() => setHoveredAdd(false)}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4"
-          onClick={handleAddItem}
-          type="button"
-        >
-          <AddCircleOutlineIcon sx={{ mr: 1 }} />
-          Add Item
-        </animated.button>
-
-        {/* Animated Calculate Button */}
-        <animated.button
-          style={springPropsCalculate}
-          onMouseEnter={() => setHoveredCalculate(true)}
-          onMouseLeave={() => setHoveredCalculate(false)}
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-        >
-          Calculate
-        </animated.button>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<AddCircleOutlineIcon />}
+            onClick={handleAddItem}
+          >
+            Add Item
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+          >
+            Calculate
+          </Button>
+        </Box>
       </Box>
     </Container>
   );
 }
 
 ItemForm.propTypes = {
+  items: PropTypes.array.isRequired,
+  setItems: PropTypes.func.isRequired,
   onCalculateWeightedSum: PropTypes.func.isRequired,
 };
 

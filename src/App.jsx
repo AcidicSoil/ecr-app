@@ -1,117 +1,114 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 import ItemForm from './components/ItemForm';
 import ServiceSearch from './components/ServiceSearch';
+import QuoteGenerator from './components/QuoteGenerator';
+import CostBreakdown from './components/CostBreakdown';
+import { Container, Typography, Box, Button, IconButton, Tooltip } from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import './App.css';
 
 function App() {
-  const [calculationDetails, setCalculationDetails] = useState([]);
-  const [totalSum, setTotalSum] = useState(0);
-  const [notification, setNotification] = useState('');
+  const [items, setItems] = useState([]);
+  const [totalWeightedSum, setTotalWeightedSum] = useState(0);
+  const [quoteNumber, setQuoteNumber] = useState('');
+  const [includeHardware, setIncludeHardware] = useState(false);
+  const [includeSoftware, setIncludeSoftware] = useState(false);
+  const [hardwareHours, setHardwareHours] = useState(1);
+  const [softwareHours, setSoftwareHours] = useState(1);
 
-  // Function to calculate the weighted sum
-  const calculateWeightedSum = (pairsArray, includeHardware, hardwareHours, includeSoftware, softwareHours) => {
-    let newTotalSum = 0;
-    let details = pairsArray.map(({ number, quantity }) => {
-      let markedUpNumber = number < 50 ? number * 2 : number * 1.3;
-      const total = markedUpNumber * quantity;
-      newTotalSum += total;
-      return {
-        detail: `${number !== markedUpNumber ? `${number} marked up to ${markedUpNumber.toFixed(2)}` : number} (quantity: ${quantity}) = ${total.toFixed(2)}`,
-        total: total.toFixed(2)
-      };
-    });
+  useEffect(() => {
+    setQuoteNumber(`Q${Date.now().toString().slice(-6)}`);
+  }, []);
+
+  const handleCopyTotal = () => {
+    navigator.clipboard.writeText(totalWeightedSum.toFixed(2))
+      .then(() => {
+        console.log('Total copied to clipboard!');
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+  };
+
+  const calculateWeightedSum = (items, includeHardware, hardwareHours, includeSoftware, softwareHours) => {
+    let total = items.reduce((sum, item) => {
+      const price = parseFloat(item.number);
+      const quantity = parseInt(item.quantity, 10);
+      let itemTotal = price <= 50 ? price * 2 : price * 1.3;
+      return sum + (itemTotal * quantity);
+    }, 0);
 
     if (includeHardware) {
-      const hardwareCost = 129.90 * hardwareHours;
-      newTotalSum += hardwareCost;
-      details.push({
-        detail: `Hardware Labor (${hardwareHours} hr${hardwareHours > 1 ? 's' : ''} @ $129.90/hr) = $${hardwareCost.toFixed(2)}`,
-        total: hardwareCost.toFixed(2)
-      });
+      total += hardwareHours * 129.90;
+    }
+    if (includeSoftware) {
+      total += softwareHours * 120;
     }
 
-    if (includeSoftware) { 
-      const softwareCost = 120 * softwareHours;
-      newTotalSum += softwareCost;
-      details.push({
-        detail: `Software Labor (${softwareHours} hr${softwareHours > 1 ? 's' : ''} @ $120.00/hr) = $${softwareCost.toFixed(2)}`,
-        total: softwareCost.toFixed(2)
-      });
-    }
-
-    setCalculationDetails(details);
-    setTotalSum(`$${newTotalSum.toFixed(2)}`);
-  };
-
-  // Add item handler
-  const addItemHandler = () => {
-    const newItem = { number: 19.59, quantity: 1 }; // Example item
-    calculateWeightedSum([newItem], false, 0, false, 0);
-    setNotification('Item added successfully!');
-    setTimeout(() => setNotification(''), 3000);
-  };
-
-  const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text).then(() => {
-      setNotification('Copied to clipboard!');
-      setTimeout(() => setNotification(''), 3000);
-    }).catch(err => {
-      console.error('Failed to copy: ', err);
-    });
+    setTotalWeightedSum(total);
   };
 
   return (
-    <div className="App bg-gray-800 min-h-screen text-white">
-      <div className="layout-container flex flex-wrap justify-between w-full p-6">
-        {/* Calculation Details Section */}
-        <div className="calculation-container bg-gray-900 p-6 rounded-lg shadow-lg w-full sm:w-1/4 mb-6">
-          <h2 className="text-2xl font-bold mb-4">Calculation Details:</h2>
-          {notification && <p className="text-green-500 mb-4">{notification}</p>}
-          <div className="details-list max-h-48 overflow-y-auto">
-            {calculationDetails.map((item, index) => (
-              <div key={index} className="detail-item mb-2">
-                <p className="text-gray-300">{item.detail}</p>
-                <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mt-2"
-                  onClick={() => copyToClipboard(item.total)}
-                >
-                  Copy ${item.total}
-                </button>
-              </div>
-            ))}
-          </div>
-          <p className="text-xl text-green-400 mt-4">Total Weighted Sum: {totalSum}</p>
-        </div>
+    <Container maxWidth="md" className="App">
+      <Typography variant="h4" component="h1" gutterBottom>
+        IT Service Quote Generator
+      </Typography>
 
-        {/* Main Content */}
-        <div className="main-content flex-grow w-full sm:w-3/4 bg-gray-800 p-6 rounded-lg">
-          <h1 className="text-3xl font-bold mb-6">Number & Quantity Sum Calculator</h1>
-          
-          {/* Form and Add Item Button */}
-          <div className="form-container space-y-4">
-            <ItemForm onCalculateWeightedSum={calculateWeightedSum} />
-            <ServiceSearch />
-            <div className="flex justify-end mt-4">
-              <button
-                className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600"
-                onClick={addItemHandler} // Add item button functionality
-              >
-                Add Item
-              </button>
-            </div>
-          </div>
+      <ServiceSearch onAddService={(service) => setItems([...items, { ...service, quantity: 1 }])} />
 
-          {/* Calculate Button at the bottom */}
-          <div className="flex justify-center mt-8">
-            <button
-              className="bg-green-500 text-white py-2 px-6 rounded-md hover:bg-green-600"
-              onClick={() => calculateWeightedSum([], false, 0, false, 0)} // Calculate button functionality
-            >
-              Calculate
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+      <ItemForm
+        items={items}
+        setItems={setItems}
+        onCalculateWeightedSum={calculateWeightedSum}
+      />
+
+      {totalWeightedSum > 0 && (
+        <>
+          <Typography variant="h6" component="h3">
+            Quote Number: {quoteNumber}
+          </Typography>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Typography variant="h5" component="h2">
+              Total Cost: ${totalWeightedSum.toFixed(2)}
+            </Typography>
+            <Tooltip title="Copy total">
+              <IconButton onClick={handleCopyTotal} size="small">
+                <ContentCopyIcon />
+              </IconButton>
+            </Tooltip>
+          </Box>
+
+          <CostBreakdown
+            items={items}
+            includeHardware={includeHardware}
+            hardwareHours={hardwareHours}
+            includeSoftware={includeSoftware}
+            softwareHours={softwareHours}
+            totalWeightedSum={totalWeightedSum}
+          />
+
+          <PDFDownloadLink
+            document={
+              <QuoteGenerator
+                items={items}
+                includeHardware={includeHardware}
+                hardwareHours={hardwareHours}
+                includeSoftware={includeSoftware}
+                softwareHours={softwareHours}
+                totalWeightedSum={totalWeightedSum}
+                quoteNumber={quoteNumber}
+              />
+            }
+            fileName={`quote_${quoteNumber}.pdf`}
+          >
+            {({ blob, url, loading, error }) =>
+              loading ? 'Loading document...' : <Button variant="contained">Download Quote PDF</Button>
+            }
+          </PDFDownloadLink>
+        </>
+      )}
+    </Container>
   );
 }
 
