@@ -49,6 +49,22 @@ function App() {
     setTotalWeightedSum(total);
   };
 
+  const handleHardwareToggle = () => {
+    setIncludeHardware(prev => !prev);
+  };
+
+  const handleSoftwareToggle = () => {
+    setIncludeSoftware(prev => !prev);
+  };
+
+  const handleHardwareHoursChange = (hours) => {
+    setHardwareHours(hours);
+  };
+
+  const handleSoftwareHoursChange = (hours) => {
+    setSoftwareHours(hours); 
+  };
+
   return (
     <Container maxWidth="md" className="App">
       <Typography variant="h4" component="h1" gutterBottom>
@@ -86,6 +102,10 @@ function App() {
             includeSoftware={includeSoftware}
             softwareHours={softwareHours}
             totalWeightedSum={totalWeightedSum}
+            onHardwareToggle={handleHardwareToggle}
+            onSoftwareToggle={handleSoftwareToggle}
+            onHardwareHoursChange={handleHardwareHoursChange}
+            onSoftwareHoursChange={handleSoftwareHoursChange}
           />
 
           <PDFDownloadLink
