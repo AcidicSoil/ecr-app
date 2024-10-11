@@ -31,11 +31,11 @@ const QuoteGenerator = ({ items, includeHardware, hardwareHours, includeSoftware
             <Text>Logo should be above this text</Text>
           </View>
           <View style={styles.contactInfo}>
-            <Text>Your Company Name</Text>
-            <Text>123 Business Street</Text>
-            <Text>City, State ZIP</Text>
-            <Text>Phone: (123) 456-7890</Text>
-            <Text>Email: info@yourcompany.com</Text>
+            <Text>Error Computer Repair</Text>
+            <Text>651 N Egret Bay Blvd</Text>
+            <Text>league city, tx 77573</Text>
+            <Text>Phone: 832.377.6727</Text>
+            <Text>Email: error@error-cr.com</Text>
           </View>
         </View>
 
