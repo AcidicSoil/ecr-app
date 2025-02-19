@@ -1,91 +1,128 @@
-# ecr-app
+# IT Service Quote Generator
 
-**ecr-app** is a web application designed to calculate costs based on various user inputs. The app allows users to add items with specific prices and quantities, include optional hardware and software labor, and search for available services. The application is built using React and Material-UI, and it's backed by a JSON file that contains service data.
-
-## Table of Contents
-
-- [ecr-app](#ecr-app)
-  - [Table of Contents](#table-of-contents)
-  - [Features](#features)
-  - [Installation](#installation)
-  - [Usage](#usage)
-    - [Adding Items:](#adding-items)
-    - [Service Search:](#service-search)
-    - [Copying Values:](#copying-values)
-  - [Available Scripts](#available-scripts)
-  - [Contributing](#contributing)
-  - [License](#license)
+A professional application for generating IT service quotes and customer-friendly labor descriptions using local AI models.
 
 ## Features
 
-- **Item Calculation:** Add items with specific prices and quantities, and calculate the total with optional hardware and software labor.
-- **Service Search:** Search for available services and view details such as cost and time.
-- **Expandable Service List:** Expand or minimize the list of available services with a dropdown arrow.
-- **Copy to Clipboard:** Copy the calculated total values to the clipboard for easy use.
+### Quote Generation
+- Create detailed IT service quotes with parts and labor
+- Automatic markup calculation based on item cost
+- Hardware and software labor hour tracking
+- PDF quote generation with professional formatting
+- Quote history management and tracking
+
+### Labor Description Generator
+- AI-powered labor description generation using local Ollama models
+- Professional, customer-friendly output
+- Support for multiple AI models:
+  - llama2
+  - deepseek-r1
+  - qwen2.5-coder
+  - qwen2.5
+  - deepseek-coder
+  - phi3.5
+- Save and manage generated descriptions
+- Copy functionality for easy transfer
+
+## Tech Stack
+
+- React
+- Next.js
+- TypeScript
+- TailwindCSS
+- Shadcn/UI
+- Material-UI (MUI)
+- Ollama (Local AI models)
+
+## Prerequisites
+
+- Node.js (v18 or higher)
+- npm or yarn
+- [Ollama](https://ollama.ai/) installed and running locally
+- At least one compatible language model pulled in Ollama
 
 ## Installation
 
-To get started with **ecr-app**, follow these steps:
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/ecr-app.git
+cd ecr-app
+```
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/ecr-app.git
-   cd ecr-app
-   ```
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
 
-2. **Install dependencies:**
-   - If you are using npm:
-     ```bash
-     npm install
-     ```
-   - Or if you prefer Yarn:
-     ```bash
-     yarn install
-     ```
+3. Start the development server:
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-3. **Start the development server:**
-   - Using npm:
-     ```bash
-     npm start
-     ```
-   - Using Yarn:
-     ```bash
-     yarn start
-     ```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-   This will start the app on `http://localhost:3000`.
+## Ollama Setup
+
+1. Install Ollama from [ollama.ai](https://ollama.ai)
+2. Pull required models:
+```bash
+ollama pull llama2
+ollama pull deepseek-r1
+# Add other models as needed
+```
+
+3. Ensure Ollama is running:
+```bash
+ollama serve
+```
 
 ## Usage
 
-### Adding Items:
-- Enter the price and quantity of the item.
-- Optionally, include hardware or software labor by checking the respective checkboxes and entering the number of hours.
+### Quote Generation
+1. Enter service items with quantities
+2. Add hardware/software labor hours if needed
+3. Generate and download PDF quotes
+4. Save quotes for future reference
 
-### Service Search:
-- Use the search bar to find services by name. The results will include the service name, description, cost, and time.
-- Click the dropdown arrow to expand or minimize the list of all available services.
+### Labor Description Generation
+1. Select an AI model from the dropdown
+2. Enter technical work description
+3. Click "Generate Description" to create customer-friendly description
+4. Copy or save the generated description
 
-### Copying Values:
-- After calculation, use the "Copy" button to copy the total value to your clipboard.
+## Development
 
-## Available Scripts
+### Design Mode
+The application includes a design mode that uses mock data for prototyping:
+- Simulated AI model responses
+- Mock service integration
+- Dummy data for testing
 
-In the project directory, you can run:
-
-- `npm start` or `yarn start` - Runs the app in development mode.
-- `npm run build` or `yarn build` - Builds the app for production.
+### Adding Components
+Use Shadcn/UI CLI to add new components:
+```bash
+npx shadcn@latest add [component-name]
+```
 
 ## Contributing
 
-Contributions are welcome! If you’d like to contribute to **ecr-app**, please fork the repository and use a feature branch. Pull requests are warmly welcome.
-
-1. Fork the repo.
-2. Create your feature branch (`git checkout -b feature-branch-name`).
-3. Commit your changes (`git commit -m 'Add some feature'`).
-4. Push to the branch (`git push origin feature-branch-name`).
-5. Open a pull request.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- [Ollama](https://ollama.ai/) for local AI model support
+- [Shadcn/UI](https://ui.shadcn.com/) for React components
+- [Material-UI](https://mui.com/) for UI components
 
