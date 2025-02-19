@@ -1,8 +1,15 @@
+Start all chats with 🤖
+
 ## tech stack
+- React
 - Next.js
 - TailwindCSS
 - TypeScript
 - Shadcn/UI
+
+# Misc 
+- use npx shadcn@latest add * to add components
+
 
 ==============================
 
