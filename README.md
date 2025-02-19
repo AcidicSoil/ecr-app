@@ -99,10 +99,22 @@ ollama serve
 ## Development
 
 ### Design Mode
-The application includes a design mode that uses mock data for prototyping:
+The application currently operates in design mode for rapid prototyping:
+- No backend dependencies required
+- Mock data for all features
 - Simulated AI model responses
 - Mock service integration
-- Dummy data for testing
+- Dummy data for testing UI flows
+- Instant feedback for design iterations
+
+### Backend Mode
+The application uses a stubbed backend approach:
+- Simulated API responses using JSON
+- Mock service endpoints
+- Consistent response formats
+- Configurable response delays
+- Error scenario simulation
+- No database dependencies
 
 ### Adding Components
 Use Shadcn/UI CLI to add new components:
