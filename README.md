@@ -37,7 +37,7 @@ A professional application for generating IT service quotes and customer-friendl
 ## Prerequisites
 
 - Node.js (v18 or higher)
-- npm or yarn
+- pnpm (v8 or higher)
 - [Ollama](https://ollama.ai/) installed and running locally
 - At least one compatible language model pulled in Ollama
 
@@ -49,21 +49,23 @@ git clone https://github.com/yourusername/ecr-app.git
 cd ecr-app
 ```
 
-2. Install dependencies:
+2. Enable pnpm with corepack:
 ```bash
-npm install
-# or
-yarn install
+corepack enable
+corepack prepare pnpm@latest --activate
 ```
 
-3. Start the development server:
+3. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
+pnpm install
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+4. Start the development server:
+```bash
+pnpm dev
+```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Ollama Setup
 
