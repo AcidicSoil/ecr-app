@@ -1,0 +1,6 @@
+design mode
+We are in design mode. We're not going to be building any backend functionality. 
+We're just going to use dummy JSON in order to mock up the prototype of our application.
+
+backend mode
+We are in stub backend mode. We're not going to be building any real backend functionality. We're just going to use dummy JSON to simulate API responses, in order to mock up the prototype of our application.
