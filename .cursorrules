@@ -10,6 +10,25 @@ Start all chats with 🤖
 # Misc 
 - use npx shadcn@latest add * to add components
 
+## AI Integration Tools
+
+### Model Access & Libraries
+- Hugging Face Transformers & Diffusers
+- ONNX Runtime
+
+### Model Serving & Deployment
+- Ray Serve
+- FastAPI
+- Docker
+
+### Experiment Tracking & Monitoring
+- MLflow
+- Weights & Biases
+- LangSmith
+
+### Additional NLP/Processing Tools
+- spaCy
+- NLTK
 
 ==============================
 
