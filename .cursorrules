@@ -1,39 +1,20 @@
 Start all chats with 🤖
 
-## tech stack
+## Tech stack
+
 - React
 - Next.js
 - TailwindCSS
 - TypeScript
 - Shadcn/UI
+- ollama
+- langchain
+- three.js
 
 # Misc 
 - use npx shadcn@latest add * to add components
 
-## AI Integration Tools
-
-### Model Access & Libraries
-- Hugging Face Transformers & Diffusers
-- ONNX Runtime
-
-### Model Serving & Deployment
-- Ray Serve
-- FastAPI
-- Docker
-
-### Experiment Tracking & Monitoring
-- MLflow
-- Weights & Biases
-- LangSmith
-
-### Additional NLP/Processing Tools
-- spaCy
-- NLTK
-
-==============================
-
 # Unified Development & Analysis Guidelines
-
 
 ## Code Quality & Style
 - Write clean, simple, readable, and modular code.
