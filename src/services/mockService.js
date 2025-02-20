@@ -97,23 +97,6 @@ const MOCK_MODELS = {
     ]
 };
 
-const MOCK_RESPONSES = [
-    `• Successfully replaced LCD back cover to resolve screen separation issue
-• Secured all hinge mounting points to restore proper screen stability
-• Verified smooth operation of screen movement after repair
-• Completed final quality check confirming proper alignment and function`,
-
-    `• Completed replacement of damaged LCD back cover assembly
-• Restored hinge mounting points to manufacturer specifications
-• Confirmed proper screen alignment and tension after repair
-• Validated full range of motion with no signs of separation`,
-
-    `• Installed new LCD back cover to address screen and hinge issues
-• Secured all mounting points to ensure stable screen operation
-• Tested and confirmed proper screen movement and alignment
-• Completed repair with full restoration of screen functionality`
-];
-
 class MockService {
     constructor() {
         // Initialize with already installed models to match your Ollama setup
@@ -134,7 +117,7 @@ class MockService {
             'vitali87/shell-commands-qwen2-1.5b-q8_0-extended:latest',
             'phi3.5:latest'
         ];
-        this.currentModel = 'llama2:latest'; // Set default model
+        this.currentModel = 'deepseek-r1:latest'; // Set default model
     }
 
     setModel(modelName) {
@@ -152,8 +135,42 @@ class MockService {
         // Simulate network delay
         await new Promise(resolve => setTimeout(resolve, 1000));
 
-        // Return a random mock response
-        return MOCK_RESPONSES[Math.floor(Math.random() * MOCK_RESPONSES.length)];
+        // Extract key information from input
+        const inputLower = input.toLowerCase();
+        const actions = [];
+
+        // Analyze the input to determine the type of work and key details
+        if ((inputLower.includes('no display')) || (inputLower.includes('display') && inputLower.includes('issue'))) {
+            actions.push(`• Diagnosed and identified display connectivity issue`);
+            if (inputLower.includes('ram')) {
+                actions.push(`• Located faulty RAM module through systematic testing`);
+                actions.push(`• Removed defective memory component and validated system stability`);
+            }
+            if (inputLower.includes('gpu') || inputLower.includes('graphics')) {
+                actions.push(`• Verified GPU functionality through dedicated testing procedures`);
+            }
+        } else if (inputLower.includes('windows') && (inputLower.includes('install') || inputLower.includes('reset'))) {
+            actions.push(`• Performed clean Windows installation on system`);
+            actions.push(`• Configured system settings and removed unnecessary software`);
+            actions.push(`• Installed essential drivers and security updates`);
+        } else if (inputLower.includes('virus') || inputLower.includes('malware')) {
+            actions.push(`• Executed comprehensive malware scanning and removal`);
+            actions.push(`• Cleaned infected system files and removed security threats`);
+            actions.push(`• Updated system protection and security measures`);
+        }
+
+        // If no specific actions were added, add relevant details from the input
+        if (actions.length === 0) {
+            const mainIssue = input.split('|')[0].trim();
+            actions.push(`• Diagnosed and addressed: ${mainIssue}`);
+            actions.push(`• Performed necessary system repairs and adjustments`);
+            actions.push(`• Verified resolution of reported issues`);
+        }
+
+        // Always add a final verification step
+        actions.push(`• Completed final quality assurance testing`);
+
+        return actions.join('\n');
     }
 
     async checkAvailability() {

@@ -23,6 +23,8 @@ import SendIcon from '@mui/icons-material/Send';
 import SaveIcon from '@mui/icons-material/Save';
 import DownloadIcon from '@mui/icons-material/Download';
 import InfoIcon from '@mui/icons-material/Info';
+import DeleteIcon from '@mui/icons-material/Delete';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import { mockService } from '../services/mockService';
 
 function Chatbot() {
@@ -94,8 +96,35 @@ function Chatbot() {
   const handleSave = () => {
     if (!description) return;
     
+    // Generate specific title based on input content
+    const inputLower = input.toLowerCase();
+    let defaultTitle = 'System Service';
+    
+    if (inputLower.includes('no display') || (inputLower.includes('display') && inputLower.includes('issue'))) {
+      if (inputLower.includes('ram')) {
+        defaultTitle = 'RAM Diagnosis & Repair';
+      } else if (inputLower.includes('gpu')) {
+        defaultTitle = 'GPU Diagnosis';
+      } else {
+        defaultTitle = 'Display Issue Diagnosis';
+      }
+    } else if (inputLower.includes('windows') && inputLower.includes('install')) {
+      defaultTitle = 'Windows Installation';
+    } else if (inputLower.includes('virus') || inputLower.includes('malware')) {
+      defaultTitle = 'Virus Removal';
+    } else if (inputLower.includes('data') || inputLower.includes('backup')) {
+      defaultTitle = 'Data Backup';
+    } else if (inputLower.includes('password') && inputLower.includes('reset')) {
+      defaultTitle = 'Password Reset';
+    } else {
+      // Try to extract main issue from the first part of the input
+      const mainIssue = input.split('|')[0].trim();
+      defaultTitle = mainIssue.length > 30 ? mainIssue.substring(0, 30) + '...' : mainIssue;
+    }
+    
     const newDescription = {
       id: Date.now(),
+      title: defaultTitle,
       text: description,
       workDescription: input,
       date: new Date().toISOString(),
@@ -297,9 +326,18 @@ function Chatbot() {
         {savedDescriptions.length > 0 && (
           <>
             <Divider sx={{ my: 4, bgcolor: 'divider' }} />
-            <Typography variant="h6" gutterBottom>
-              Saved Descriptions
-            </Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+              <Typography variant="h6">
+                Saved Descriptions ({savedDescriptions.length})
+              </Typography>
+              <Box>
+                <Tooltip title="Filter descriptions">
+                  <IconButton size="small" sx={{ color: 'primary.light' }}>
+                    <FilterListIcon />
+                  </IconButton>
+                </Tooltip>
+              </Box>
+            </Box>
             <Box sx={{ mt: 2 }}>
               {savedDescriptions.map((saved) => (
                 <Card 
@@ -311,28 +349,97 @@ function Chatbot() {
                   }}
                 >
                   <CardContent>
-                    <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
-                      {new Date(saved.date).toLocaleDateString()}
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <Box sx={{ flex: 1 }}>
+                        <Typography variant="h6" gutterBottom sx={{ 
+                          fontSize: '1.1rem',
+                          fontWeight: 500,
+                          color: 'primary.light'
+                        }}>
+                          {saved.title}
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
+                          {new Date(saved.date).toLocaleDateString()} • {new Date(saved.date).toLocaleTimeString()}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary" gutterBottom>
+                          Model used: {saved.model}
+                        </Typography>
+                      </Box>
+                      <Box>
+                        <Tooltip title="Delete description">
+                          <IconButton 
+                            onClick={() => {
+                              if (window.confirm('Are you sure you want to delete this description?')) {
+                                const updatedDescriptions = savedDescriptions.filter(d => d.id !== saved.id);
+                                setSavedDescriptions(updatedDescriptions);
+                                localStorage.setItem('laborDescriptions', JSON.stringify(updatedDescriptions));
+                              }
+                            }} 
+                            size="small" 
+                            sx={{ color: 'error.light' }}
+                          >
+                            <DeleteIcon />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Copy description">
+                          <IconButton 
+                            onClick={() => handleCopy(saved.text)} 
+                            size="small" 
+                            sx={{ color: 'primary.light', ml: 1 }}
+                          >
+                            <ContentCopyIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </Box>
+                    </Box>
+                    <Divider sx={{ my: 2 }} />
+                    <Box sx={{ mb: 2 }}>
+                      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                        Original work description:
+                      </Typography>
+                      <Typography variant="body2" sx={{ 
+                        color: 'text.secondary',
+                        bgcolor: 'action.hover',
+                        p: 1,
+                        borderRadius: 1,
+                        whiteSpace: 'pre-wrap'
+                      }}>
+                        {saved.workDescription}
+                      </Typography>
+                    </Box>
+                    <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                      Generated description:
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" gutterBottom>
-                      Work performed: {saved.workDescription}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" gutterBottom>
-                      Model used: {saved.model}
-                    </Typography>
-                    <Typography variant="body1">
+                    <Typography variant="body1" sx={{ whiteSpace: 'pre-line' }}>
                       {saved.text}
                     </Typography>
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
-                      <Tooltip title="Copy description">
-                        <IconButton onClick={() => handleCopy(saved.text)} size="small" sx={{ color: 'primary.light' }}>
-                          <ContentCopyIcon />
-                        </IconButton>
-                      </Tooltip>
-                    </Box>
                   </CardContent>
                 </Card>
               ))}
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+              <Button
+                variant="outlined"
+                color="error"
+                startIcon={<DeleteIcon />}
+                onClick={() => {
+                  if (window.confirm('Are you sure you want to delete all saved descriptions? This action cannot be undone.')) {
+                    setSavedDescriptions([]);
+                    localStorage.removeItem('laborDescriptions');
+                  }
+                }}
+                sx={{
+                  borderColor: 'error.light',
+                  color: 'error.light',
+                  '&:hover': {
+                    borderColor: 'error.main',
+                    bgcolor: 'error.dark',
+                    color: 'error.contrastText',
+                  },
+                }}
+              >
+                Clear All Descriptions
+              </Button>
             </Box>
           </>
         )}

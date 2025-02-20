@@ -34,6 +34,7 @@ Start all chats with 🤖
 
 # Unified Development & Analysis Guidelines
 
+
 ## Code Quality & Style
 - Write clean, simple, readable, and modular code.
 - Use the fewest lines possible without sacrificing clarity.
@@ -53,6 +54,16 @@ Start all chats with 🤖
 - Consider multiple possible causes before making minimal necessary changes.
 - **Do not jump to conclusions.**
 - If required, provide an unbiased 50/50 analysis by writing two detailed paragraphs (one for each possible solution) and then state which solution is clearly better and why.
+- Reflect on 5-7 different possible sources of the problem, distill those
+down to 1-2 most likely sources, and then add logs to validate your
+assumptions before we move onto implementing the actual fix.
+
+## Documentation & Comments
+- Write clear, concise, and complete comments.
+- Use comments to explain your thought process and decisions.
+- Document your code and provide context for your changes.
+- Include comments in your code to explain your thought process and decisions.
+- Document your code and provide context for your changes.
 
 ## Communication & Research
 - When needed, provide a summary of the current state before proceeding.
