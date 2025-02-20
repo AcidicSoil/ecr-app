@@ -1,6 +1,49 @@
-design mode
-We are in design mode. We're not going to be building any backend functionality. 
-We're just going to use dummy JSON in order to mock up the prototype of our application.
 
-backend mode
-We are in stub backend mode. We're not going to be building any real backend functionality. We're just going to use dummy JSON to simulate API responses, in order to mock up the prototype of our application.
+We are in design mode. We're focusing on rapid UI/UX prototyping and visual design.
+We're using mock data and temporary solutions to quickly validate concepts and user flows.
+
+We are prototyping with emphasis on:
+Creating engaging user interfaces
+Testing different visual layouts and components
+Building interactive user flows and animations
+Using dummy data and mock APIs
+Implementing quick frontend features
+Focusing on responsive design and accessibility
+Exploring different design patterns
+Creating reusable UI components
+Testing user interactions and feedback
+Rapid iteration based on feedback
+This mode prioritizes speed, visual appeal, and user experience over backend implementation.
+The key principles are:
+Quick prototypes over complete implementations
+Visual demos over production-ready code
+Happy path flows over extensive error handling
+Convenience over security constraints
+Quick solutions over performance optimization
+
+
+We are in logic mode. We're focusing on robust backend functionality and proper system architecture.
+We're implementing real data flows, API integrations, and production-ready features.
+
+
+
+Real implementation over prototypes
+Production-ready code over quick demos
+Proper error handling over happy paths
+Security over convenience
+Performance over quick solutions
+Testing over assumptions
+Documentation over implicit knowledge
+
+We are building for production with emphasis on:
+Implementing secure and scalable backend systems
+Creating proper data models and database schemas
+Writing comprehensive error handling and validation
+Building reliable API integrations and services
+Ensuring proper testing coverage and documentation
+Optimizing performance and resource usage
+Following best practices for maintainable code
+Creating reusable and modular components
+Implementing proper authentication and authorization
+Setting up logging, monitoring, and error tracking
+This mode prioritizes correctness, reliability, and maintainability over rapid visual iteration.
