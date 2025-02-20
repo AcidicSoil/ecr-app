@@ -10,6 +10,8 @@ Start all chats with 🤖
 - ollama
 - langchain
 - three.js
+- node-llama-cpp
+- fuse.js
 
 # Misc 
 - use npx shadcn@latest add * to add components
