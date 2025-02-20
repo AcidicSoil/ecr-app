@@ -13,7 +13,49 @@ Start all chats with 🤖
 
 # Misc 
 - use npx shadcn@latest add * to add components
+- use pnpm install to install dependencies
 
+==============================
+
+# Unified Development & Analysis Guidelines
+
+
+## Code Quality & Style
+- Write clean, simple, readable, and modular code.
+- Use the fewest lines possible without sacrificing clarity.
+- Keep files small and focused (<200 lines).
+- Use clear, consistent naming and short, easy-to-understand sentences.
+- Include lots of explanatory comments. **Never delete old comments** unless they are clearly obsolete.
+- Test after every meaningful change.
+
+## Implementation Approach
+- Proceed like a senior developer.
+- Fully implement features; do not stop until the feature is completely done.
+- Focus on core functionality before optimizing.
+- Think thoroughly before coding. When analyzing problems, write 2–3 reasoning paragraphs.
+
+## Error Analysis & Fixing
+- Explain problems in plain English.
+- Consider multiple possible causes before making minimal necessary changes.
+- **Do not jump to conclusions.**
+- If required, provide an unbiased 50/50 analysis by writing two detailed paragraphs (one for each possible solution) and then state which solution is clearly better and why.
+- Reflect on 5-7 different possible sources of the problem, distill those
+down to 1-2 most likely sources, and then add logs to validate your
+assumptions before we move onto implementing the actual fix.
+
+## Documentation & Comments
+- Write clear, concise, and complete comments.
+- Use comments to explain your thought process and decisions.
+- Document your code and provide context for your changes.
+- Include comments in your code to explain your thought process and decisions.
+- Document your code and provide context for your changes.
+
+## Communication & Research
+- When needed, provide a summary of the current state before proceeding.
+- If a search query is necessary, write one clear paragraph with all relevant context, instructing a researcher to find the needed code snippets or technical details.
+- Answer briefly when instructed.
+- Start with uncertainty and gradually gain confidence as you reason through the problem.
+- When in doubt, suggest performing a web search for the latest up-to-date information.
 # Unified Development & Analysis Guidelines
 
 ## Code Quality & Style
