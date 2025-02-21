@@ -1,0 +1,3768 @@
+This file contains all the files in the repository combined into one.
+I want to refactor the code, so please review it first.
+
+This file is a merged representation of the entire codebase, combined into a single document by Repomix. The content has been processed where security check has been disabled.
+
+================================================================
+File Summary
+================================================================
+
+Purpose:
+--------
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+
+File Format:
+------------
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Multiple file entries, each consisting of:
+  a. A separator line (================)
+  b. The file path (File: path/to/file)
+  c. Another separator line
+  d. The full contents of the file
+  e. A blank line
+
+Usage Guidelines:
+-----------------
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+
+Notes:
+------
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Security check has been disabled - content may contain sensitive information
+
+Additional Info:
+----------------
+
+================================================================
+Directory Structure
+================================================================
+public/
+  index.html
+  manifest.json
+  robots.txt
+  services.json
+src/
+  assets/
+    logoBase64.js
+  components/
+    Chatbot.jsx
+    CostBreakdown.jsx
+    ItemForm.jsx
+    QuoteGenerator.jsx
+    QuoteHistory.tsx
+    ServiceRecommendations.tsx
+    ServiceSearch.jsx
+  services/
+    langchain.ts
+    llama.ts
+    mockLangchain.ts
+    mockService.js
+    ollama.ts
+  store/
+    useStore.ts
+  App.css
+  App.jsx
+  App.test.js
+  App.tsx
+  index.css
+  index.js
+  logo.svg
+  reportWebVitals.js
+  services.json
+  setupTests.js
+.cursorrules
+.gitignore
+1_generate_master_plan.txt
+2_stub_out_project.txt
+3_fully_code_out_implementation.txt
+convertLogo.js
+logoBase64.js
+package.json
+postcss.config.js
+README.md
+scratchpad.txt
+tailwind.config.js
+
+================================================================
+Files
+================================================================
+
+================
+File: public/index.html
+================
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
+
+================
+File: public/manifest.json
+================
+{
+  "short_name": "React App",
+  "name": "Create React App Sample",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
+
+================
+File: public/robots.txt
+================
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Disallow:
+
+================
+File: public/services.json
+================
+[
+  {
+    "service": "Laptop Cleaning",
+    "time": "1.5 hours",
+    "cost": 180,
+    "description": "Professional cleaning of the laptop's internal components to improve performance and longevity."
+  },
+  {
+    "service": "Network Troubleshooting",
+    "time": "2 hours",
+    "cost": 240,
+    "description": "Diagnosing and resolving issues with network connectivity, including wired and wireless networks."
+  },
+  {
+    "service": "Data Transfer",
+    "time": "1.5 hours",
+    "cost": 180,
+    "description": "Securely transferring data from one device to another, ensuring all important files are moved."
+  },
+  {
+    "service": "OS Update",
+    "time": "1 hour",
+    "cost": 120,
+    "description": "Updating the operating system to the latest version, including installing necessary patches and drivers."
+  },
+  {
+    "service": "Macbook Pro Repair",
+    "time": "2 hours",
+    "cost": 240,
+    "description": "Repairing common hardware and software issues on MacBook Pro devices."
+  },
+  {
+    "service": "Web Design",
+    "time": "10 hours",
+    "cost": 1200,
+    "description": "Designing a professional, responsive website tailored to the client's needs."
+  },
+  {
+    "service": "PC Diagnostic",
+    "time": "0.5 hours",
+    "cost": 60,
+    "description": "Running diagnostics to identify issues affecting PC performance."
+  },
+  {
+    "service": "Email Setup",
+    "time": "0.5 hours",
+    "cost": 60,
+    "description": "Setting up email accounts, including configuration of email clients and security settings."
+  },
+  {
+    "service": "Cybersecurity Consultation",
+    "time": "2 hours",
+    "cost": 240,
+    "description": "Providing expert advice on how to secure your digital environment from threats."
+  },
+  {
+    "service": "Network Server Setup",
+    "time": "3 hours",
+    "cost": 360,
+    "description": "Installing and configuring a network server, including setup of user accounts and permissions."
+  },
+  {
+    "service": "Cloud Backup Setup",
+    "time": "1 hour",
+    "cost": 120,
+    "description": "Configuring cloud backup services for automated data protection and recovery."
+  },
+  {
+    "service": "VPN Installation",
+    "time": "1 hour",
+    "cost": 120,
+    "description": "Setting up a Virtual Private Network (VPN) to secure internet connections and protect online privacy."
+  },
+  {
+    "service": "Website Troubleshooting",
+    "time": "2 hours",
+    "cost": 240,
+    "description": "Identifying and fixing issues with website functionality, performance, and security."
+  },
+  {
+    "service": "Diagnostic and Consultation",
+    "time": "1 hour",
+    "cost": 120,
+    "description": "Providing a comprehensive system diagnostic and consultation on necessary improvements."
+  },
+  {
+    "service": "Security Setup",
+    "time": "3 hours",
+    "cost": 360,
+    "description": "Setting up security measures to protect your system from unauthorized access and threats."
+  },
+  {
+    "service": "Password Reset",
+    "time": "1 hour",
+    "cost": 120,
+    "description": "Assisting with resetting forgotten passwords and ensuring account security."
+  },
+  {
+    "service": "IT Consulting",
+    "time": "1 hour",
+    "cost": 120,
+    "description": "Consulting on IT strategies and solutions to improve business efficiency."
+  },
+  {
+    "service": "BIOS Update",
+    "time": "1 hour",
+    "cost": 120,
+    "description": "Updating the BIOS to ensure hardware compatibility and improve system stability."
+  },
+  {
+    "service": "System Training",
+    "time": "2 hours",
+    "cost": 240,
+    "description": "Providing training on using software systems effectively."
+  },
+  {
+    "service": "Printer Troubleshooting",
+    "time": "1.5 hours",
+    "cost": 180,
+    "description": "Resolving issues with printer functionality, including setup and configuration."
+  }
+]
+
+================
+File: src/assets/logoBase64.js
+================
+export const logoBase64 = 'data:image/png;base64,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';
+
+================
+File: src/components/Chatbot.jsx
+================
+import React, { useState, useEffect } from 'react';
+import {
+  Box,
+  Paper,
+  TextField,
+  Button,
+  Typography,
+  CircularProgress,
+  Card,
+  CardContent,
+  IconButton,
+  Tooltip,
+  Divider,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Alert,
+  LinearProgress,
+} from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import SendIcon from '@mui/icons-material/Send';
+import SaveIcon from '@mui/icons-material/Save';
+import DownloadIcon from '@mui/icons-material/Download';
+import InfoIcon from '@mui/icons-material/Info';
+import DeleteIcon from '@mui/icons-material/Delete';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import { mockService } from '../services/mockService';
+
+function Chatbot() {
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [description, setDescription] = useState('');
+  const [model, setModel] = useState('');
+  const [availableModels, setAvailableModels] = useState([]);
+  const [allModels, setAllModels] = useState([]);
+  const [isOllamaAvailable, setIsOllamaAvailable] = useState(false);
+  const [installing, setInstalling] = useState(false);
+  const [currentInstall, setCurrentInstall] = useState('');
+  const [error, setError] = useState('');
+  const [savedDescriptions, setSavedDescriptions] = useState(() => {
+    const saved = localStorage.getItem('laborDescriptions');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    const checkOllama = async () => {
+      const available = await mockService.checkAvailability();
+      setIsOllamaAvailable(available);
+      if (available) {
+        const models = await mockService.getAvailableModels();
+        setAvailableModels(models);
+        const allModelsResponse = await mockService.listModels();
+        setAllModels(allModelsResponse.models);
+      }
+    };
+    checkOllama();
+  }, []);
+
+  const handleInstallModel = async (modelName) => {
+    setInstalling(true);
+    setCurrentInstall(modelName);
+    setError('');
+    
+    try {
+      await mockService.pullModel(modelName);
+      const models = await mockService.getAvailableModels();
+      setAvailableModels(models);
+      setModel(modelName);
+    } catch (error) {
+      console.error('Error installing model:', error);
+      setError(`Failed to install ${modelName}: ${error.message}`);
+    }
+    
+    setInstalling(false);
+    setCurrentInstall('');
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!input.trim() || !isOllamaAvailable) return;
+
+    setLoading(true);
+    setError('');
+    try {
+      mockService.setModel(model);
+      const response = await mockService.generateDescription(input);
+      setDescription(response);
+    } catch (error) {
+      console.error('Error:', error);
+      setError(error.message);
+    }
+    setLoading(false);
+  };
+
+  const handleSave = () => {
+    if (!description) return;
+    
+    // Generate specific title based on input content
+    const inputLower = input.toLowerCase();
+    let defaultTitle = 'System Service';
+    
+    if (inputLower.includes('no display') || (inputLower.includes('display') && inputLower.includes('issue'))) {
+      if (inputLower.includes('ram')) {
+        defaultTitle = 'RAM Diagnosis & Repair';
+      } else if (inputLower.includes('gpu')) {
+        defaultTitle = 'GPU Diagnosis';
+      } else {
+        defaultTitle = 'Display Issue Diagnosis';
+      }
+    } else if (inputLower.includes('windows') && inputLower.includes('install')) {
+      defaultTitle = 'Windows Installation';
+    } else if (inputLower.includes('virus') || inputLower.includes('malware')) {
+      defaultTitle = 'Virus Removal';
+    } else if (inputLower.includes('data') || inputLower.includes('backup')) {
+      defaultTitle = 'Data Backup';
+    } else if (inputLower.includes('password') && inputLower.includes('reset')) {
+      defaultTitle = 'Password Reset';
+    } else {
+      // Try to extract main issue from the first part of the input
+      const mainIssue = input.split('|')[0].trim();
+      defaultTitle = mainIssue.length > 30 ? mainIssue.substring(0, 30) + '...' : mainIssue;
+    }
+    
+    const newDescription = {
+      id: Date.now(),
+      title: defaultTitle,
+      text: description,
+      workDescription: input,
+      date: new Date().toISOString(),
+      model,
+    };
+    
+    const updatedDescriptions = [newDescription, ...savedDescriptions];
+    setSavedDescriptions(updatedDescriptions);
+    localStorage.setItem('laborDescriptions', JSON.stringify(updatedDescriptions));
+  };
+
+  const handleCopy = (text) => {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        console.log('Copied to clipboard');
+      })
+      .catch(err => {
+        console.error('Failed to copy:', err);
+      });
+  };
+
+  return (
+    <Box sx={{ maxWidth: 800, mx: 'auto', mt: 4 }}>
+      <Paper 
+        sx={{ 
+          p: 3, 
+          bgcolor: 'background.paper',
+          color: 'text.primary',
+        }}
+      >
+        <Typography variant="h5" gutterBottom>
+          Labor Description Generator
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+          Describe the work performed and get a customer-friendly labor description using local AI models.
+        </Typography>
+
+        {!isOllamaAvailable && (
+          <Alert 
+            severity="warning" 
+            sx={{ 
+              mb: 2,
+              bgcolor: 'warning.dark',
+              color: 'warning.contrastText',
+            }}
+          >
+            Ollama is not available. Please make sure it's running on your system.
+          </Alert>
+        )}
+
+        {error && (
+          <Alert 
+            severity="error" 
+            sx={{ 
+              mb: 2,
+              bgcolor: 'error.dark',
+              color: 'error.contrastText',
+            }}
+          >
+            {error}
+          </Alert>
+        )}
+
+        {isOllamaAvailable && availableModels.length === 0 && (
+          <Alert 
+            severity="info" 
+            icon={<InfoIcon />}
+            sx={{ 
+              mb: 2,
+              bgcolor: 'info.dark',
+              color: 'info.contrastText',
+            }}
+          >
+            No models installed. Click a model below to install:
+            <Box sx={{ mt: 2, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+              {allModels.map((model) => (
+                <Button
+                  key={model.name}
+                  variant="outlined"
+                  size="small"
+                  disabled={installing}
+                  onClick={() => handleInstallModel(model.name)}
+                  startIcon={<DownloadIcon />}
+                  sx={{
+                    color: 'primary.light',
+                    borderColor: 'primary.light',
+                    '&:hover': {
+                      borderColor: 'primary.main',
+                      bgcolor: 'action.hover',
+                    },
+                  }}
+                >
+                  {model.name.toUpperCase()}
+                </Button>
+              ))}
+            </Box>
+            {installing && (
+              <Box sx={{ mt: 2 }}>
+                <Typography variant="body2" color="text.secondary" gutterBottom>
+                  Installing {currentInstall}...
+                </Typography>
+                <LinearProgress sx={{ bgcolor: 'background.paper' }} />
+              </Box>
+            )}
+          </Alert>
+        )}
+
+        <FormControl fullWidth sx={{ mb: 2 }}>
+          <InputLabel id="model-select-label">Model</InputLabel>
+          <Select
+            labelId="model-select-label"
+            value={model}
+            label="Model"
+            onChange={(e) => setModel(e.target.value)}
+            disabled={!isOllamaAvailable || availableModels.length === 0 || installing}
+            sx={{
+              bgcolor: 'background.paper',
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderColor: 'divider',
+              },
+            }}
+          >
+            {availableModels.map((m) => (
+              <MenuItem key={m} value={m}>{m.toUpperCase()}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <form onSubmit={handleSubmit}>
+          <TextField
+            fullWidth
+            multiline
+            rows={4}
+            variant="outlined"
+            placeholder="Describe the technical work performed..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            sx={{ 
+              mb: 2,
+              bgcolor: 'background.paper',
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderColor: 'divider',
+              },
+            }}
+            disabled={!isOllamaAvailable || availableModels.length === 0 || installing}
+          />
+          <Button
+            variant="contained"
+            type="submit"
+            disabled={loading || !input.trim() || !isOllamaAvailable || availableModels.length === 0 || installing}
+            endIcon={loading ? <CircularProgress size={20} /> : <SendIcon />}
+            sx={{
+              bgcolor: 'primary.main',
+              '&:hover': {
+                bgcolor: 'primary.dark',
+              },
+            }}
+          >
+            Generate Description
+          </Button>
+        </form>
+
+        {description && (
+          <Card 
+            sx={{ 
+              mt: 3,
+              bgcolor: 'background.paper',
+              color: 'text.primary',
+            }}
+          >
+            <CardContent>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+                <Typography variant="h6" color="primary.light">
+                  Generated Description
+                </Typography>
+                <Box>
+                  <Tooltip title="Copy description">
+                    <IconButton onClick={() => handleCopy(description)} size="small" sx={{ color: 'primary.light' }}>
+                      <ContentCopyIcon />
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Save description">
+                    <IconButton onClick={handleSave} size="small" sx={{ ml: 1, color: 'primary.light' }}>
+                      <SaveIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Box>
+              </Box>
+              <Typography variant="body2" color="text.secondary" gutterBottom>
+                Generated using {model}
+              </Typography>
+              <Typography variant="body1" component="div" sx={{ whiteSpace: 'pre-line' }}>
+                {description}
+              </Typography>
+            </CardContent>
+          </Card>
+        )}
+
+        {savedDescriptions.length > 0 && (
+          <>
+            <Divider sx={{ my: 4, bgcolor: 'divider' }} />
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+              <Typography variant="h6">
+                Saved Descriptions ({savedDescriptions.length})
+              </Typography>
+              <Box>
+                <Tooltip title="Filter descriptions">
+                  <IconButton size="small" sx={{ color: 'primary.light' }}>
+                    <FilterListIcon />
+                  </IconButton>
+                </Tooltip>
+              </Box>
+            </Box>
+            <Box sx={{ mt: 2 }}>
+              {savedDescriptions.map((saved) => (
+                <Card 
+                  key={saved.id} 
+                  sx={{ 
+                    mb: 2,
+                    bgcolor: 'background.paper',
+                    color: 'text.primary',
+                  }}
+                >
+                  <CardContent>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <Box sx={{ flex: 1 }}>
+                        <Typography variant="h6" gutterBottom sx={{ 
+                          fontSize: '1.1rem',
+                          fontWeight: 500,
+                          color: 'primary.light'
+                        }}>
+                          {saved.title}
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
+                          {new Date(saved.date).toLocaleDateString()} • {new Date(saved.date).toLocaleTimeString()}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary" gutterBottom>
+                          Model used: {saved.model}
+                        </Typography>
+                      </Box>
+                      <Box>
+                        <Tooltip title="Delete description">
+                          <IconButton 
+                            onClick={() => {
+                              if (window.confirm('Are you sure you want to delete this description?')) {
+                                const updatedDescriptions = savedDescriptions.filter(d => d.id !== saved.id);
+                                setSavedDescriptions(updatedDescriptions);
+                                localStorage.setItem('laborDescriptions', JSON.stringify(updatedDescriptions));
+                              }
+                            }} 
+                            size="small" 
+                            sx={{ color: 'error.light' }}
+                          >
+                            <DeleteIcon />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Copy description">
+                          <IconButton 
+                            onClick={() => handleCopy(saved.text)} 
+                            size="small" 
+                            sx={{ color: 'primary.light', ml: 1 }}
+                          >
+                            <ContentCopyIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </Box>
+                    </Box>
+                    <Divider sx={{ my: 2 }} />
+                    <Box sx={{ mb: 2 }}>
+                      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                        Original work description:
+                      </Typography>
+                      <Typography variant="body2" sx={{ 
+                        color: 'text.secondary',
+                        bgcolor: 'action.hover',
+                        p: 1,
+                        borderRadius: 1,
+                        whiteSpace: 'pre-wrap'
+                      }}>
+                        {saved.workDescription}
+                      </Typography>
+                    </Box>
+                    <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                      Generated description:
+                    </Typography>
+                    <Typography variant="body1" sx={{ whiteSpace: 'pre-line' }}>
+                      {saved.text}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              ))}
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+              <Button
+                variant="outlined"
+                color="error"
+                startIcon={<DeleteIcon />}
+                onClick={() => {
+                  if (window.confirm('Are you sure you want to delete all saved descriptions? This action cannot be undone.')) {
+                    setSavedDescriptions([]);
+                    localStorage.removeItem('laborDescriptions');
+                  }
+                }}
+                sx={{
+                  borderColor: 'error.light',
+                  color: 'error.light',
+                  '&:hover': {
+                    borderColor: 'error.main',
+                    bgcolor: 'error.dark',
+                    color: 'error.contrastText',
+                  },
+                }}
+              >
+                Clear All Descriptions
+              </Button>
+            </Box>
+          </>
+        )}
+      </Paper>
+    </Box>
+  );
+}
+
+export default Chatbot;
+
+================
+File: src/components/CostBreakdown.jsx
+================
+import React from 'react';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Tooltip } from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+
+function CostBreakdown({ items, includeHardware, hardwareHours, includeSoftware, softwareHours, totalWeightedSum }) {
+  const calculateItemTotal = (item) => {
+    const price = parseFloat(item.number);
+    const quantity = parseInt(item.quantity, 10);
+    let itemTotal = price <= 50 ? price * 2 : price * 1.3;
+    return itemTotal * quantity;
+  };
+
+  const handleCopy = (text) => {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        console.log('Copied to clipboard');
+        // You could add a temporary visual feedback here
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+  };
+
+  return (
+    <TableContainer component={Paper}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Item</TableCell>
+            <TableCell align="right">Quantity</TableCell>
+            <TableCell align="right">Unit Price</TableCell>
+            <TableCell align="right">Total</TableCell>
+            <TableCell align="right">Copy</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {items.map((item, index) => {
+            const itemTotal = calculateItemTotal(item);
+            return (
+              <TableRow key={index}>
+                <TableCell component="th" scope="row">
+                  Service Item
+                </TableCell>
+                <TableCell align="right">{item.quantity}</TableCell>
+                <TableCell align="right">${parseFloat(item.number).toFixed(2)}</TableCell>
+                <TableCell align="right">${itemTotal.toFixed(2)}</TableCell>
+                <TableCell align="right">
+                  <Tooltip title="Copy total">
+                    <IconButton onClick={() => handleCopy(itemTotal.toFixed(2))} size="small">
+                      <ContentCopyIcon />
+                    </IconButton>
+                  </Tooltip>
+                </TableCell>
+              </TableRow>
+            );
+          })}
+          {includeHardware && (
+            <TableRow>
+              <TableCell component="th" scope="row">Hardware Support</TableCell>
+              <TableCell align="right">{hardwareHours}</TableCell>
+              <TableCell align="right">$129.90</TableCell>
+              <TableCell align="right">${(hardwareHours * 129.90).toFixed(2)}</TableCell>
+              <TableCell align="right">
+                <Tooltip title="Copy total">
+                  <IconButton onClick={() => handleCopy((hardwareHours * 129.90).toFixed(2))} size="small">
+                    <ContentCopyIcon />
+                  </IconButton>
+                </Tooltip>
+              </TableCell>
+            </TableRow>
+          )}
+          {includeSoftware && (
+            <TableRow>
+              <TableCell component="th" scope="row">Software Support</TableCell>
+              <TableCell align="right">{softwareHours}</TableCell>
+              <TableCell align="right">$120.00</TableCell>
+              <TableCell align="right">${(softwareHours * 120).toFixed(2)}</TableCell>
+              <TableCell align="right">
+                <Tooltip title="Copy total">
+                  <IconButton onClick={() => handleCopy((softwareHours * 120).toFixed(2))} size="small">
+                    <ContentCopyIcon />
+                  </IconButton>
+                </Tooltip>
+              </TableCell>
+            </TableRow>
+          )}
+          <TableRow>
+            <TableCell colSpan={3}>Total</TableCell>
+            <TableCell align="right">${totalWeightedSum.toFixed(2)}</TableCell>
+            <TableCell align="right">
+              <Tooltip title="Copy total">
+                <IconButton onClick={() => handleCopy(totalWeightedSum.toFixed(2))} size="small">
+                  <ContentCopyIcon />
+                </IconButton>
+              </Tooltip>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}
+
+export default CostBreakdown;
+
+================
+File: src/components/ItemForm.jsx
+================
+import React, { useState, useCallback, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import TextField from '@mui/material/TextField';
+import { Box, Container, IconButton, Button, FormControlLabel, Checkbox, Card, CardContent } from '@mui/material';
+import { useTransition, animated } from '@react-spring/web';
+
+function ItemForm({ items, setItems, onCalculateWeightedSum }) {
+  const [includeHardware, setIncludeHardware] = useState(() => {
+    return JSON.parse(localStorage.getItem('includeHardware')) || false;
+  });
+  const [includeSoftware, setIncludeSoftware] = useState(() => {
+    return JSON.parse(localStorage.getItem('includeSoftware')) || false;
+  });
+  const [hardwareHours, setHardwareHours] = useState(() => {
+    return parseInt(localStorage.getItem('hardwareHours')) || 1;
+  });
+  const [softwareHours, setSoftwareHours] = useState(() => {
+    return parseInt(localStorage.getItem('softwareHours')) || 1;
+  });
+  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    localStorage.setItem('includeHardware', JSON.stringify(includeHardware));
+  }, [includeHardware]);
+
+  useEffect(() => {
+    localStorage.setItem('includeSoftware', JSON.stringify(includeSoftware));
+  }, [includeSoftware]);
+
+  useEffect(() => {
+    localStorage.setItem('hardwareHours', hardwareHours.toString());
+  }, [hardwareHours]);
+
+  useEffect(() => {
+    localStorage.setItem('softwareHours', softwareHours.toString());
+  }, [softwareHours]);
+
+  const itemTransitions = useTransition(items, {
+    from: { opacity: 0, transform: 'translateY(20px)' },
+    enter: { opacity: 1, transform: 'translateY(0px)' },
+    leave: { opacity: 0, transform: 'translateY(-20px)' },
+    keys: item => item.id,
+  });
+
+  const validateInput = useCallback((type, value) => {
+    if (type === 'number') {
+      if (value === '') return '';
+      const num = parseFloat(value);
+      if (isNaN(num) || num < 0) return 'Price must be a positive number';
+    } else if (type === 'quantity') {
+      const num = parseInt(value, 10);
+      if (isNaN(num) || num < 1) return 'Quantity must be at least 1';
+    }
+    return '';
+  }, []);
+
+  const handleChange = useCallback((id, type, value) => {
+    const error = validateInput(type, value);
+    setErrors(prev => ({ ...prev, [id]: { ...prev[id], [type]: error } }));
+
+    setItems(prevItems => prevItems.map(item => {
+      if (item.id === id) {
+        return { ...item, [type]: value };
+      }
+      return item;
+    }));
+  }, [validateInput, setItems]);
+
+  const handleAddItem = () => {
+    const newId = Date.now();
+    setItems(prev => [...prev, { id: newId, number: '', quantity: 1 }]);
+    setErrors(prev => ({ ...prev, [newId]: {} }));
+  };
+
+  const handleRemoveItem = (id) => {
+    setItems(items.filter(item => item.id !== id));
+    setErrors(prev => {
+      const newErrors = { ...prev };
+      delete newErrors[id];
+      return newErrors;
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const hasErrors = Object.values(errors).some(itemErrors => 
+      Object.values(itemErrors).some(error => error !== '')
+    );
+    if (hasErrors) {
+      alert('Please correct the errors before submitting.');
+      return;
+    }
+    if (items.some(item => item.number === '')) {
+      alert('Please fill in all price fields before submitting.');
+      return;
+    }
+    onCalculateWeightedSum(items, includeHardware, hardwareHours, includeSoftware, softwareHours);
+  };
+
+  return (
+    <Container maxWidth="sm">
+      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        {itemTransitions((styles, item) => (
+          <animated.div style={styles}>
+            <Card sx={{ mb: 2 }}>
+              <CardContent>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <TextField
+                    label="Price"
+                    type="number"
+                    value={item.number}
+                    onChange={(e) => handleChange(item.id, 'number', e.target.value)}
+                    variant="outlined"
+                    size="small"
+                    sx={{ mr: 1, flexGrow: 1 }}
+                    inputProps={{ min: 0, step: "0.01" }}
+                    error={!!errors[item.id]?.number}
+                    helperText={errors[item.id]?.number}
+                  />
+                  <TextField
+                    label="Quantity"
+                    type="number"
+                    value={item.quantity}
+                    onChange={(e) => handleChange(item.id, 'quantity', e.target.value)}
+                    variant="outlined"
+                    size="small"
+                    sx={{ mr: 1, flexGrow: 1 }}
+                    inputProps={{ min: 1 }}
+                    error={!!errors[item.id]?.quantity}
+                    helperText={errors[item.id]?.quantity}
+                  />
+                  <IconButton onClick={() => handleRemoveItem(item.id)} color="error">
+                    <RemoveCircleOutlineIcon />
+                  </IconButton>
+                </Box>
+              </CardContent>
+            </Card>
+          </animated.div>
+        ))}
+
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={includeHardware}
+                onChange={() => setIncludeHardware(!includeHardware)}
+              />
+            }
+            label="Include Hardware Labor"
+          />
+          {includeHardware && (
+            <TextField
+              label="Hours"
+              type="number"
+              value={hardwareHours}
+              onChange={(e) => setHardwareHours(Math.max(1, parseInt(e.target.value, 10)))}
+              variant="outlined"
+              size="small"
+              sx={{ ml: 2 }}
+            />
+          )}
+        </Box>
+
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={includeSoftware}
+                onChange={() => setIncludeSoftware(!includeSoftware)}
+              />
+            }
+            label="Include Software Labor"
+          />
+          {includeSoftware && (
+            <TextField
+              label="Hours"
+              type="number"
+              value={softwareHours}
+              onChange={(e) => setSoftwareHours(Math.max(1, parseInt(e.target.value, 10)))}
+              variant="outlined"
+              size="small"
+              sx={{ ml: 2 }}
+            />
+          )}
+        </Box>
+
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<AddCircleOutlineIcon />}
+            onClick={handleAddItem}
+          >
+            Add Item
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+          >
+            Calculate
+          </Button>
+        </Box>
+      </Box>
+    </Container>
+  );
+}
+
+ItemForm.propTypes = {
+  items: PropTypes.array.isRequired,
+  setItems: PropTypes.func.isRequired,
+  onCalculateWeightedSum: PropTypes.func.isRequired,
+};
+
+export default ItemForm;
+
+================
+File: src/components/QuoteGenerator.jsx
+================
+import React from 'react';
+import { Document, Page, Text, View, StyleSheet, Image, Font } from '@react-pdf/renderer';
+
+// Register custom fonts
+Font.register({
+  family: 'Open Sans',
+  fonts: [
+    { src: 'https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-regular.ttf' },
+    { src: 'https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-600.ttf', fontWeight: 600 },
+    { src: 'https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-700.ttf', fontWeight: 700 },
+  ]
+});
+
+const styles = StyleSheet.create({
+  page: { 
+    padding: 40,
+    fontFamily: 'Open Sans',
+    fontSize: 11,
+    color: '#333333'
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 40,
+    borderBottom: '2px solid #2196f3',
+    paddingBottom: 20,
+  },
+  logoContainer: {
+    width: '40%',
+  },
+  logo: { 
+    width: 120,
+    height: 60,
+    marginBottom: 10,
+  },
+  contactInfo: {
+    width: '40%',
+    textAlign: 'right',
+    fontSize: 10,
+    color: '#666666',
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 8,
+    color: '#2196f3',
+    fontWeight: 700,
+  },
+  subtitle: {
+    fontSize: 12,
+    marginBottom: 20,
+    color: '#666666',
+  },
+  section: {
+    marginBottom: 20,
+  },
+  sectionTitle: {
+    fontSize: 14,
+    fontWeight: 600,
+    marginBottom: 10,
+    color: '#2196f3',
+  },
+  table: {
+    display: 'table',
+    width: '100%',
+    marginBottom: 20,
+  },
+  tableHeader: {
+    flexDirection: 'row',
+    backgroundColor: '#f5f5f5',
+    borderBottom: '1px solid #e0e0e0',
+    textAlign: 'center',
+    fontSize: 10,
+    fontWeight: 600,
+    padding: 8,
+  },
+  tableRow: {
+    flexDirection: 'row',
+    borderBottom: '1px solid #e0e0e0',
+    padding: '8px 0',
+    fontSize: 10,
+  },
+  tableCol: {
+    width: '25%',
+    textAlign: 'center',
+    padding: '4px 8px',
+  },
+  tableColLeft: {
+    width: '25%',
+    textAlign: 'left',
+    padding: '4px 8px',
+  },
+  tableColRight: {
+    width: '25%',
+    textAlign: 'right',
+    padding: '4px 8px',
+  },
+  laborSection: {
+    marginTop: 20,
+    padding: 15,
+    backgroundColor: '#f8f9fa',
+    borderRadius: 4,
+  },
+  laborRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 5,
+    fontSize: 10,
+  },
+  totalSection: {
+    marginTop: 30,
+    borderTop: '2px solid #2196f3',
+    paddingTop: 20,
+  },
+  totalRow: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  totalLabel: {
+    fontSize: 14,
+    fontWeight: 600,
+    marginRight: 20,
+  },
+  totalAmount: {
+    fontSize: 18,
+    fontWeight: 700,
+    color: '#2196f3',
+  },
+  footer: {
+    position: 'absolute',
+    bottom: 30,
+    left: 40,
+    right: 40,
+    textAlign: 'center',
+    fontSize: 9,
+    color: '#666666',
+    borderTop: '1px solid #e0e0e0',
+    paddingTop: 20,
+  },
+});
+
+const QuoteGenerator = ({ items, includeHardware, hardwareHours, includeSoftware, softwareHours, totalWeightedSum, quoteNumber }) => {
+  const logo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...'; // Your base64 encoded image
+  const today = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  
+  return (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        <View style={styles.headerContainer}>
+          <View style={styles.logoContainer}>
+            <Image style={styles.logo} src={logo} />
+          </View>
+          <View style={styles.contactInfo}>
+            <Text>Error Computer Repair</Text>
+            <Text>651 N Egret Bay Blvd</Text>
+            <Text>League City, TX 77573</Text>
+            <Text>Phone: 832.377.6727</Text>
+            <Text>Email: error@error-cr.com</Text>
+          </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.title}>IT Service Quote</Text>
+          <Text style={styles.subtitle}>Quote #: {quoteNumber} | Date: {today}</Text>
+        </View>
+        
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Service Items</Text>
+          <View style={styles.table}>
+            <View style={styles.tableHeader}>
+              <Text style={styles.tableColLeft}>Description</Text>
+              <Text style={styles.tableCol}>Unit Price</Text>
+              <Text style={styles.tableCol}>Quantity</Text>
+              <Text style={styles.tableColRight}>Total</Text>
+            </View>
+            {items.map((item, index) => (
+              <View style={styles.tableRow} key={index}>
+                <Text style={styles.tableColLeft}>Service Item {index + 1}</Text>
+                <Text style={styles.tableCol}>${parseFloat(item.number).toFixed(2)}</Text>
+                <Text style={styles.tableCol}>{item.quantity}</Text>
+                <Text style={styles.tableColRight}>${calculateItemTotal(item).toFixed(2)}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
+
+        {(includeHardware || includeSoftware) && (
+          <View style={styles.laborSection}>
+            <Text style={styles.sectionTitle}>Labor Charges</Text>
+            {includeHardware && (
+              <View style={styles.laborRow}>
+                <Text>Hardware Labor ({hardwareHours} hours @ $129.90/hour)</Text>
+                <Text>${(hardwareHours * 129.90).toFixed(2)}</Text>
+              </View>
+            )}
+            {includeSoftware && (
+              <View style={styles.laborRow}>
+                <Text>Software Labor ({softwareHours} hours @ $120.00/hour)</Text>
+                <Text>${(softwareHours * 120).toFixed(2)}</Text>
+              </View>
+            )}
+          </View>
+        )}
+
+        <View style={styles.totalSection}>
+          <View style={styles.totalRow}>
+            <Text style={styles.totalLabel}>Total Amount:</Text>
+            <Text style={styles.totalAmount}>${totalWeightedSum.toFixed(2)}</Text>
+          </View>
+        </View>
+
+        <View style={styles.footer}>
+          <Text>Thank you for choosing Error Computer Repair</Text>
+          <Text>This quote is valid for 30 days from the date of issue.</Text>
+          <Text>Terms & Conditions: Payment is due upon completion of services.</Text>
+        </View>
+      </Page>
+    </Document>
+  );
+}
+
+function calculateItemTotal(item) {
+  const price = parseFloat(item.number);
+  const quantity = parseInt(item.quantity, 10);
+  let itemTotal = price <= 50 ? price * 2 : price * 1.3;
+  return itemTotal * quantity;
+}
+
+export default QuoteGenerator;
+
+================
+File: src/components/QuoteHistory.tsx
+================
+import React, { useState, useMemo } from 'react';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Typography,
+  Button,
+  Box,
+  TextField,
+  IconButton,
+  Tooltip,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Collapse,
+  Stack,
+  Chip,
+} from '@mui/material';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SortIcon from '@mui/icons-material/Sort';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import SearchIcon from '@mui/icons-material/Search';
+import QuoteGenerator from './QuoteGenerator';
+
+interface Quote {
+  id: string;
+  date: string;
+  totalAmount: number;
+  items: Array<{
+    number: string;
+    quantity: number;
+  }>;
+  includeHardware: boolean;
+  hardwareHours: number;
+  includeSoftware: boolean;
+  softwareHours: number;
+}
+
+interface QuoteHistoryProps {
+  quotes: Quote[];
+  onDeleteQuote?: (id: string) => void;
+}
+
+type SortField = 'date' | 'totalAmount' | 'id';
+type SortOrder = 'asc' | 'desc';
+
+const QuoteHistory: React.FC<QuoteHistoryProps> = ({ quotes, onDeleteQuote }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [sortField, setSortField] = useState<SortField>('date');
+  const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
+  const [expandedQuote, setExpandedQuote] = useState<string | null>(null);
+
+  const handleSort = (field: SortField) => {
+    if (sortField === field) {
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortOrder('desc');
+    }
+  };
+
+  const filteredAndSortedQuotes = useMemo(() => {
+    return quotes
+      .filter(quote => 
+        quote.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        quote.date.includes(searchTerm) ||
+        quote.totalAmount.toString().includes(searchTerm)
+      )
+      .sort((a, b) => {
+        const multiplier = sortOrder === 'asc' ? 1 : -1;
+        if (sortField === 'date') {
+          return multiplier * (new Date(a.date).getTime() - new Date(b.date).getTime());
+        }
+        if (sortField === 'totalAmount') {
+          return multiplier * (a.totalAmount - b.totalAmount);
+        }
+        return multiplier * a.id.localeCompare(b.id);
+      });
+  }, [quotes, searchTerm, sortField, sortOrder]);
+
+  const toggleExpand = (quoteId: string) => {
+    setExpandedQuote(expandedQuote === quoteId ? null : quoteId);
+  };
+
+  if (quotes.length === 0) {
+    return (
+      <Box sx={{ mt: 4, textAlign: 'center' }}>
+        <Typography variant="h5" component="h2" gutterBottom>
+          Quote History
+        </Typography>
+        <Typography variant="body1" color="text.secondary">
+          No quotes saved yet. Create a quote to see it here.
+        </Typography>
+      </Box>
+    );
+  }
+
+  return (
+    <Box sx={{ mt: 4 }}>
+      <Typography variant="h5" component="h2" gutterBottom>
+        Quote History
+      </Typography>
+
+      <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+        <TextField
+          size="small"
+          placeholder="Search quotes..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          InputProps={{
+            startAdornment: <SearchIcon sx={{ mr: 1, color: 'text.secondary' }} />,
+          }}
+          sx={{ flexGrow: 1 }}
+        />
+        <FormControl size="small" sx={{ minWidth: 120 }}>
+          <InputLabel>Sort by</InputLabel>
+          <Select
+            value={sortField}
+            label="Sort by"
+            onChange={(e) => handleSort(e.target.value as SortField)}
+          >
+            <MenuItem value="date">Date</MenuItem>
+            <MenuItem value="totalAmount">Amount</MenuItem>
+            <MenuItem value="id">Quote ID</MenuItem>
+          </Select>
+        </FormControl>
+        <IconButton onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}>
+          <SortIcon sx={{ transform: sortOrder === 'desc' ? 'rotate(180deg)' : 'none' }} />
+        </IconButton>
+      </Stack>
+
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Quote ID</TableCell>
+              <TableCell>Date</TableCell>
+              <TableCell align="right">Total Amount</TableCell>
+              <TableCell align="center">Services</TableCell>
+              <TableCell align="right">Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredAndSortedQuotes.map((quote) => (
+              <React.Fragment key={quote.id}>
+                <TableRow 
+                  hover
+                  onClick={() => toggleExpand(quote.id)}
+                  sx={{ cursor: 'pointer' }}
+                >
+                  <TableCell component="th" scope="row">
+                    {quote.id}
+                  </TableCell>
+                  <TableCell>{quote.date}</TableCell>
+                  <TableCell align="right">${quote.totalAmount.toFixed(2)}</TableCell>
+                  <TableCell align="center">
+                    <Stack direction="row" spacing={1} justifyContent="center">
+                      <Chip 
+                        size="small" 
+                        label={`${quote.items.length} items`}
+                      />
+                      {quote.includeHardware && (
+                        <Chip 
+                          size="small" 
+                          label={`HW: ${quote.hardwareHours}h`} 
+                          color="primary"
+                        />
+                      )}
+                      {quote.includeSoftware && (
+                        <Chip 
+                          size="small" 
+                          label={`SW: ${quote.softwareHours}h`}
+                          color="secondary"
+                        />
+                      )}
+                    </Stack>
+                  </TableCell>
+                  <TableCell align="right">
+                    <Stack direction="row" spacing={1} justifyContent="flex-end">
+                      <PDFDownloadLink
+                        document={
+                          <QuoteGenerator
+                            items={quote.items}
+                            includeHardware={quote.includeHardware}
+                            hardwareHours={quote.hardwareHours}
+                            includeSoftware={quote.includeSoftware}
+                            softwareHours={quote.softwareHours}
+                            totalWeightedSum={quote.totalAmount}
+                            quoteNumber={quote.id}
+                          />
+                        }
+                        fileName={`quote_${quote.id}.pdf`}
+                      >
+                        {({ loading }) => (
+                          <Button
+                            variant="contained"
+                            size="small"
+                            disabled={loading}
+                          >
+                            {loading ? 'Loading...' : 'Download PDF'}
+                          </Button>
+                        )}
+                      </PDFDownloadLink>
+                      {onDeleteQuote && (
+                        <Tooltip title="Delete quote">
+                          <IconButton
+                            size="small"
+                            color="error"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onDeleteQuote(quote.id);
+                            }}
+                          >
+                            <DeleteIcon />
+                          </IconButton>
+                        </Tooltip>
+                      )}
+                      <IconButton size="small">
+                        {expandedQuote === quote.id ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                      </IconButton>
+                    </Stack>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell colSpan={5} sx={{ py: 0 }}>
+                    <Collapse in={expandedQuote === quote.id}>
+                      <Box sx={{ p: 2 }}>
+                        <Typography variant="subtitle2" gutterBottom>
+                          Quote Details
+                        </Typography>
+                        <Table size="small">
+                          <TableHead>
+                            <TableRow>
+                              <TableCell>Item</TableCell>
+                              <TableCell align="right">Price</TableCell>
+                              <TableCell align="right">Quantity</TableCell>
+                              <TableCell align="right">Total</TableCell>
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            {quote.items.map((item, index) => (
+                              <TableRow key={index}>
+                                <TableCell>Item {index + 1}</TableCell>
+                                <TableCell align="right">${item.number}</TableCell>
+                                <TableCell align="right">{item.quantity}</TableCell>
+                                <TableCell align="right">
+                                  ${(parseFloat(item.number) * item.quantity).toFixed(2)}
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                            {quote.includeHardware && (
+                              <TableRow>
+                                <TableCell>Hardware Labor</TableCell>
+                                <TableCell align="right">$129.90/h</TableCell>
+                                <TableCell align="right">{quote.hardwareHours}h</TableCell>
+                                <TableCell align="right">
+                                  ${(129.90 * quote.hardwareHours).toFixed(2)}
+                                </TableCell>
+                              </TableRow>
+                            )}
+                            {quote.includeSoftware && (
+                              <TableRow>
+                                <TableCell>Software Labor</TableCell>
+                                <TableCell align="right">$120.00/h</TableCell>
+                                <TableCell align="right">{quote.softwareHours}h</TableCell>
+                                <TableCell align="right">
+                                  ${(120 * quote.softwareHours).toFixed(2)}
+                                </TableCell>
+                              </TableRow>
+                            )}
+                          </TableBody>
+                        </Table>
+                      </Box>
+                    </Collapse>
+                  </TableCell>
+                </TableRow>
+              </React.Fragment>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
+  );
+};
+
+export default QuoteHistory;
+
+================
+File: src/components/ServiceRecommendations.tsx
+================
+import React, { useEffect, useState } from 'react';
+import { llamaService } from '../services/llama';
+import { useStore } from '../store/useStore';
+
+const ServiceRecommendations: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const {
+    searchQuery,
+    selectedServices,
+    recommendations,
+    setRecommendations
+  } = useStore();
+
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      if (!searchQuery) return;
+      
+      setLoading(true);
+      try {
+        const result = await llamaService.getServiceRecommendations(searchQuery);
+        setRecommendations({ services: result });
+      } catch (error) {
+        console.error('Error fetching recommendations:', error);
+      }
+      setLoading(false);
+    };
+
+    fetchRecommendations();
+  }, [searchQuery, setRecommendations]);
+
+  useEffect(() => {
+    const analyzePricing = async () => {
+      if (selectedServices.length === 0) return;
+      
+      setLoading(true);
+      try {
+        const analysis = await llamaService.analyzePricing(selectedServices);
+        setRecommendations({ pricing: analysis });
+      } catch (error) {
+        console.error('Error analyzing pricing:', error);
+      }
+      setLoading(false);
+    };
+
+    analyzePricing();
+  }, [selectedServices, setRecommendations]);
+
+  if (loading) {
+    return (
+      <div className="p-4 bg-gray-50 rounded-lg">
+        <div className="animate-pulse">
+          <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+          <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-4">
+      {recommendations.services && (
+        <div className="p-4 bg-blue-50 rounded-lg">
+          <h3 className="font-semibold text-blue-800 mb-2">Recommended Services</h3>
+          <p className="text-blue-700">{recommendations.services}</p>
+        </div>
+      )}
+      
+      {recommendations.pricing && (
+        <div className="p-4 bg-green-50 rounded-lg">
+          <h3 className="font-semibold text-green-800 mb-2">Pricing Analysis</h3>
+          <p className="text-green-700">{recommendations.pricing}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ServiceRecommendations;
+
+================
+File: src/components/ServiceSearch.jsx
+================
+import React, { useState, useEffect, useMemo } from 'react';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { Box, Container, Typography, IconButton, Chip, Autocomplete } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import Fuse from 'fuse.js';
+
+function ServiceSearch({ onAddService }) {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredResults, setFilteredResults] = useState([]);
+    const [servicesData, setServicesData] = useState([]);
+    const [isExpanded, setIsExpanded] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState('All');
+
+    useEffect(() => {
+        // Fetch the services data from the JSON file
+        fetch('/services.json')
+            .then(response => {
+                if (!response.ok) { throw new Error('Network response was not ok'); }
+                return response.json();
+            })
+            .then(data => {
+                setServicesData(data);
+                setFilteredResults(data);  // Initialize with all services displayed
+            })
+            .catch(error => {
+                console.error('Error loading the services data:', error);
+            });
+    }, []);
+
+    const fuse = useMemo(() => new Fuse(servicesData, {
+        keys: ['service', 'category'],
+        threshold: 0.3,
+    }), [servicesData]);
+
+    const categories = useMemo(() => 
+        ['All', ...new Set(servicesData.map(service => service.category))],
+        [servicesData]
+    );
+
+    useEffect(() => {
+        // Filter services based on the search term
+        if (searchTerm === '' && selectedCategory === 'All') {
+            setFilteredResults(servicesData);  // Show all services when search term is empty
+        } else {
+            let results = fuse.search(searchTerm).map(result => result.item);
+            if (selectedCategory !== 'All') {
+                results = results.filter(service => service.category === selectedCategory);
+            }
+            setFilteredResults(results);
+        }
+    }, [searchTerm, selectedCategory, servicesData, fuse]);
+
+    const toggleExpand = () => {
+        setIsExpanded(!isExpanded);
+    };
+
+    return (
+        <Container>
+            <Box sx={{ mb: 2 }}>
+                <TextField
+                    label="Search Service"
+                    value={searchTerm}
+                    onChange={event => setSearchTerm(event.target.value)}
+                    fullWidth
+                    margin="normal"
+                />
+                <Autocomplete
+                    value={selectedCategory}
+                    onChange={(event, newValue) => {
+                        setSelectedCategory(newValue);
+                    }}
+                    options={categories}
+                    renderInput={(params) => <TextField {...params} label="Category" />}
+                    sx={{ mt: 2 }}
+                    getOptionLabel={(option) => option} // Add this line
+                />
+            </Box>
+
+            <Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={toggleExpand}>
+                    <Typography variant="h6" sx={{ mb: 2 }}>
+                        Available Services
+                    </Typography>
+                    <IconButton>
+                        {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                    </IconButton>
+                </Box>
+
+                {isExpanded && (
+                    <Box>
+                        {filteredResults.length > 0 ? (
+                            filteredResults.map((result, index) => (
+                                <Box key={index} sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <Box>
+                                        <Typography variant="subtitle1">{result.service}</Typography>
+                                        <Typography variant="body2"><strong>Cost:</strong> ${result.cost}</Typography>
+                                        <Typography variant="body2"><strong>Time:</strong> {result.time}</Typography>
+                                        <Chip label={result.category} size="small" sx={{ mt: 1 }} />
+                                    </Box>
+                                    <Button
+                                        variant="outlined"
+                                        size="small"
+                                        startIcon={<AddCircleOutlineIcon />}
+                                        onClick={() => onAddService(result)}
+                                    >
+                                        Add
+                                    </Button>
+                                </Box>
+                            ))
+                        ) : (
+                            <Typography variant="body2" color="textSecondary">No services found.</Typography>
+                        )}
+                    </Box>
+                )}
+            </Box>
+        </Container>
+    );
+}
+
+export default ServiceSearch;
+
+================
+File: src/services/langchain.ts
+================
+import { ChatOllama } from 'langchain/chat_models/ollama';
+import { PromptTemplate } from 'langchain/prompts';
+import { StringOutputParser } from 'langchain/schema/output_parser';
+import { RunnableSequence } from 'langchain/schema/runnable';
+import { z } from 'zod';
+
+// Define the schema for labor description output
+const LaborDescriptionSchema = z.object({
+  description: z.string(),
+  bulletPoints: z.array(z.string()),
+  technicalTerms: z.array(z.string()),
+});
+
+type LaborDescription = z.infer<typeof LaborDescriptionSchema>;
+
+const SYSTEM_TEMPLATE = `You are an IT service professional who writes clear, concise labor descriptions for customers.
+Your task is to create customer-friendly descriptions of technical work performed.
+Focus on value delivered and use simple language while maintaining accuracy.`;
+
+const USER_TEMPLATE = `Create a clear and concise labor description for the following work:
+{input}
+
+The description should:
+- Be written for a non-technical audience
+- Use specific details from the work performed
+- Be formatted in bullet points
+- Keep under 100 words
+- Focus on the value provided to the customer
+- Include any relevant technical terms in a customer-friendly way
+
+Format the response as bullet points, starting each point with "• ".`;
+
+class LangChainService {
+  private model: ChatOllama;
+  private prompt: PromptTemplate;
+  private chain: RunnableSequence;
+
+  constructor(modelName: string = 'llama2') {
+    this.model = new ChatOllama({
+      baseUrl: 'http://localhost:11434',
+      model: modelName,
+      temperature: 0.7,
+    });
+
+    this.prompt = PromptTemplate.fromTemplate(USER_TEMPLATE);
+    
+    // Create the chain
+    this.chain = RunnableSequence.from([
+      this.prompt,
+      this.model,
+      new StringOutputParser(),
+    ]);
+  }
+
+  /**
+   * Set the model to use for generation
+   */
+  setModel(modelName: string) {
+    this.model = new ChatOllama({
+      baseUrl: 'http://localhost:11434',
+      model: modelName,
+      temperature: 0.7,
+    });
+  }
+
+  /**
+   * Generate a labor description using the configured model
+   */
+  async generateDescription(input: string): Promise<string> {
+    try {
+      const response = await this.chain.invoke({
+        input,
+      });
+
+      return response;
+    } catch (error) {
+      console.error('Error generating description:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Check if Ollama is available
+   */
+  async checkAvailability(): Promise<boolean> {
+    try {
+      const response = await fetch('http://localhost:11434/api/tags');
+      return response.ok;
+    } catch {
+      return false;
+    }
+  }
+
+  /**
+   * Get list of available models
+   */
+  async getAvailableModels(): Promise<string[]> {
+    try {
+      const response = await fetch('http://localhost:11434/api/tags');
+      if (!response.ok) return [];
+      
+      const data = await response.json();
+      return data.models?.map((model: any) => model.name) || [];
+    } catch {
+      return [];
+    }
+  }
+}
+
+export const langChainService = new LangChainService();
+
+================
+File: src/services/llama.ts
+================
+import { LlamaModel, LlamaContext, LlamaChatSession } from 'node-llama-cpp';
+
+// Initialize LLaMA model
+const MODEL_PATH = './models/llama-2-7b-chat.gguf';
+
+class LlamaService {
+  private model: LlamaModel | null = null;
+  private context: LlamaContext | null = null;
+  private session: LlamaChatSession | null = null;
+
+  async initialize() {
+    try {
+      this.model = new LlamaModel({
+        modelPath: MODEL_PATH,
+        contextSize: 4096,
+        gpuLayers: 0 // Set to higher number if GPU is available
+      });
+
+      this.context = new LlamaContext({ model: this.model });
+      this.session = new LlamaChatSession({ context: this.context });
+      
+      return true;
+    } catch (error) {
+      console.error('Failed to initialize LLaMA:', error);
+      return false;
+    }
+  }
+
+  async getServiceRecommendations(query: string): Promise<string> {
+    if (!this.session) {
+      throw new Error('LLaMA service not initialized');
+    }
+
+    const prompt = `As an IT service expert, analyze this request and suggest relevant services: "${query}"`;
+    
+    try {
+      const response = await this.session.prompt(prompt);
+      return response;
+    } catch (error) {
+      console.error('Error getting recommendations:', error);
+      return 'Unable to generate recommendations at this time.';
+    }
+  }
+
+  async analyzePricing(services: string[]): Promise<string> {
+    if (!this.session) {
+      throw new Error('LLaMA service not initialized');
+    }
+
+    const prompt = `Analyze these IT services and suggest optimal pricing and potential bundles: ${services.join(', ')}`;
+    
+    try {
+      const response = await this.session.prompt(prompt);
+      return response;
+    } catch (error) {
+      console.error('Error analyzing pricing:', error);
+      return 'Unable to analyze pricing at this time.';
+    }
+  }
+}
+
+export const llamaService = new LlamaService();
+
+================
+File: src/services/mockLangchain.ts
+================
+/**
+ * Mock service for simulating LangChain functionality in design mode
+ */
+
+const MOCK_MODELS = [
+  'llama2',
+  'mistral',
+  'codellama',
+  'neural-chat',
+  'starling-lm',
+];
+
+const MOCK_RESPONSES = [
+  `• Performed comprehensive system maintenance to enhance computer performance and security
+• Updated critical software components and installed latest security patches
+• Optimized system settings for faster operation and better user experience`,
+
+  `• Resolved network connectivity issues affecting remote work capabilities
+• Configured secure VPN access for enhanced data protection
+• Streamlined file sharing system for improved team collaboration`,
+
+  `• Upgraded hardware components to boost system performance
+• Implemented automated backup solution for data protection
+• Installed and configured new productivity software tools`,
+];
+
+class MockLangChainService {
+  private model: string;
+
+  constructor(modelName: string = 'llama2') {
+    this.model = modelName;
+  }
+
+  /**
+   * Set the model to use for generation
+   */
+  setModel(modelName: string) {
+    this.model = modelName;
+  }
+
+  /**
+   * Generate a mock labor description
+   */
+  async generateDescription(input: string): Promise<string> {
+    // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Return a random mock response
+    return MOCK_RESPONSES[Math.floor(Math.random() * MOCK_RESPONSES.length)];
+  }
+
+  /**
+   * Mock check if Ollama is available
+   */
+  async checkAvailability(): Promise<boolean> {
+    return true;
+  }
+
+  /**
+   * Get list of mock available models
+   */
+  async getAvailableModels(): Promise<string[]> {
+    return MOCK_MODELS;
+  }
+}
+
+export const langChainService = new MockLangChainService();
+
+================
+File: src/services/mockService.js
+================
+/**
+ * Mock service for prototyping the labor description generator
+ */
+
+const MOCK_MODELS = {
+    models: [
+        {
+            name: 'llama2:latest',
+            digest: 'sha256:78e26419b446',
+            size: 3800000000,
+            modified_at: '2024-03-19T00:00:00Z'
+        },
+        {
+            name: 'deepseek-r1:14b',
+            digest: 'sha256:ea35dfe18182',
+            size: 9000000000,
+            modified_at: '2024-03-16T00:00:00Z'
+        },
+        {
+            name: 'llama2:7b',
+            digest: 'sha256:78e26419b446',
+            size: 3800000000,
+            modified_at: '2024-03-16T00:00:00Z'
+        },
+        {
+            name: 'sammcj/qwen2.5-coder-7b-instruct:q8_0',
+            digest: 'sha256:4627e24f85f0',
+            size: 8100000000,
+            modified_at: '2024-03-16T00:00:00Z'
+        },
+        {
+            name: 'bsahane/Qwen2.5-VL-7B-Instruct:Q4_K_M_benxh',
+            digest: 'sha256:dccd480cacac',
+            size: 4700000000,
+            modified_at: '2024-03-16T00:00:00Z'
+        },
+        {
+            name: 'llama3:8b',
+            digest: 'sha256:365c0bd3c000',
+            size: 4700000000,
+            modified_at: '2024-03-14T00:00:00Z'
+        },
+        {
+            name: 'deepseek-r1:1.5b',
+            digest: 'sha256:6d3abb8d2d53',
+            size: 986000000,
+            modified_at: '2024-03-14T00:00:00Z'
+        },
+        {
+            name: 'qwen2.5-coder:latest',
+            digest: 'sha256:2b0496514337',
+            size: 4700000000,
+            modified_at: '2024-03-14T00:00:00Z'
+        },
+        {
+            name: 'qwen2.5:7b',
+            digest: 'sha256:845dbda0ea48',
+            size: 4700000000,
+            modified_at: '2024-03-14T00:00:00Z'
+        },
+        {
+            name: 'qwen2.5:latest',
+            digest: 'sha256:845dbda0ea48',
+            size: 4700000000,
+            modified_at: '2024-03-14T00:00:00Z'
+        },
+        {
+            name: 'deepseek-coder:base',
+            digest: 'sha256:3b417b786925',
+            size: 776000000,
+            modified_at: '2024-03-07T00:00:00Z'
+        },
+        {
+            name: 'deepseek-r1:latest',
+            digest: 'sha256:0a8c26691023',
+            size: 4700000000,
+            modified_at: '2024-03-07T00:00:00Z'
+        },
+        {
+            name: 'hf.co/MaziyarPanahi/Qwen2.5-7B-Instruct-GGUF:IQ1_M',
+            digest: 'sha256:b6a58b228f8d',
+            size: 2000000000,
+            modified_at: '2024-01-19T00:00:00Z'
+        },
+        {
+            name: 'vitali87/shell-commands-qwen2-1.5b-q8_0-extended:latest',
+            digest: 'sha256:483edcaac98a',
+            size: 1600000000,
+            modified_at: '2024-01-19T00:00:00Z'
+        },
+        {
+            name: 'phi3.5:latest',
+            digest: 'sha256:61819fb370a3',
+            size: 2200000000,
+            modified_at: '2024-01-19T00:00:00Z'
+        }
+    ]
+};
+
+class MockService {
+    constructor() {
+        // Initialize with already installed models to match your Ollama setup
+        this.installedModels = [
+            'llama2:latest',
+            'deepseek-r1:14b',
+            'llama2:7b',
+            'sammcj/qwen2.5-coder-7b-instruct:q8_0',
+            'bsahane/Qwen2.5-VL-7B-Instruct:Q4_K_M_benxh',
+            'llama3:8b',
+            'deepseek-r1:1.5b',
+            'qwen2.5-coder:latest',
+            'qwen2.5:7b',
+            'qwen2.5:latest',
+            'deepseek-coder:base',
+            'deepseek-r1:latest',
+            'hf.co/MaziyarPanahi/Qwen2.5-7B-Instruct-GGUF:IQ1_M',
+            'vitali87/shell-commands-qwen2-1.5b-q8_0-extended:latest',
+            'phi3.5:latest'
+        ];
+        this.currentModel = 'deepseek-r1:latest'; // Set default model
+    }
+
+    setModel(modelName) {
+        if (!this.installedModels.includes(modelName)) {
+            throw new Error(`Model ${modelName} is not installed. Please pull it first.`);
+        }
+        this.currentModel = modelName;
+    }
+
+    async generateDescription(input) {
+        if (!this.currentModel || !this.installedModels.includes(this.currentModel)) {
+            throw new Error(`No model selected or model not installed. Please select a model first.`);
+        }
+
+        // Simulate network delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // Extract key information from input
+        const inputLower = input.toLowerCase();
+        const actions = [];
+
+        // Analyze the input to determine the type of work and key details
+        if ((inputLower.includes('no display')) || (inputLower.includes('display') && inputLower.includes('issue'))) {
+            actions.push(`• Diagnosed and identified display connectivity issue`);
+            if (inputLower.includes('ram')) {
+                actions.push(`• Located faulty RAM module through systematic testing`);
+                actions.push(`• Removed defective memory component and validated system stability`);
+            }
+            if (inputLower.includes('gpu') || inputLower.includes('graphics')) {
+                actions.push(`• Verified GPU functionality through dedicated testing procedures`);
+            }
+        } else if (inputLower.includes('windows') && (inputLower.includes('install') || inputLower.includes('reset'))) {
+            actions.push(`• Performed clean Windows installation on system`);
+            actions.push(`• Configured system settings and removed unnecessary software`);
+            actions.push(`• Installed essential drivers and security updates`);
+        } else if (inputLower.includes('virus') || inputLower.includes('malware')) {
+            actions.push(`• Executed comprehensive malware scanning and removal`);
+            actions.push(`• Cleaned infected system files and removed security threats`);
+            actions.push(`• Updated system protection and security measures`);
+        }
+
+        // If no specific actions were added, add relevant details from the input
+        if (actions.length === 0) {
+            const mainIssue = input.split('|')[0].trim();
+            actions.push(`• Diagnosed and addressed: ${mainIssue}`);
+            actions.push(`• Performed necessary system repairs and adjustments`);
+            actions.push(`• Verified resolution of reported issues`);
+        }
+
+        // Always add a final verification step
+        actions.push(`• Completed final quality assurance testing`);
+
+        return actions.join('\n');
+    }
+
+    async checkAvailability() {
+        // In design mode, we'll simulate Ollama being available
+        return true;
+    }
+
+    async getAvailableModels() {
+        // Return installed models in Ollama format
+        return this.installedModels;
+    }
+
+    async listModels() {
+        // Return all available models in Ollama format
+        return MOCK_MODELS;
+    }
+
+    // Helper method to simulate pulling a model
+    async pullModel(modelName) {
+        const model = MOCK_MODELS.models.find(m => m.name === modelName);
+        if (!model) {
+            throw new Error(`Model ${modelName} not found`);
+        }
+
+        // Simulate download delay based on model size
+        const sizeInGB = model.size / 1000000000;
+        await new Promise(resolve => setTimeout(resolve, sizeInGB * 1000));
+
+        if (!this.installedModels.includes(modelName)) {
+            this.installedModels.push(modelName);
+        }
+        return true;
+    }
+
+    // Helper method to simulate removing a model
+    async removeModel(modelName) {
+        const index = this.installedModels.indexOf(modelName);
+        if (index > -1) {
+            this.installedModels.splice(index, 1);
+        }
+        return true;
+    }
+}
+
+export const mockService = new MockService();
+
+================
+File: src/services/ollama.ts
+================
+/**
+ * Service for interacting with Ollama local models
+ */
+
+interface OllamaResponse {
+  model: string;
+  created_at: string;
+  response: string;
+  done: boolean;
+}
+
+class OllamaService {
+  private baseUrl: string;
+  private model: string;
+
+  constructor(baseUrl = 'http://localhost:11434', model = 'llama2') {
+    this.baseUrl = baseUrl;
+    this.model = model;
+  }
+
+  /**
+   * Generate a response using the Ollama model
+   */
+  async generateResponse(prompt: string): Promise<string> {
+    try {
+      const response = await fetch(`${this.baseUrl}/api/generate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: this.model,
+          prompt,
+          stream: false,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json() as OllamaResponse;
+      return data.response;
+    } catch (error) {
+      console.error('Error calling Ollama:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Set the model to use for generation
+   */
+  setModel(model: string) {
+    this.model = model;
+  }
+}
+
+export const ollamaService = new OllamaService();
+
+================
+File: src/store/useStore.ts
+================
+import { create } from 'zustand'
+
+export interface Service {
+  id: number
+  name: string
+  category: string
+  basePrice: number
+}
+
+export interface LaborOptions {
+  includeHardware: boolean
+  includeSoftware: boolean
+}
+
+export interface Recommendations {
+  services: string
+  pricing: string
+}
+
+interface QuoteStore {
+  // State
+  services: Service[]
+  selectedServices: string[]
+  searchQuery: string
+  selectedCategory: string
+  laborOptions: LaborOptions
+  recommendations: Recommendations
+  
+  // Actions
+  setSearchQuery: (query: string) => void
+  setSelectedCategory: (category: string) => void
+  toggleService: (serviceName: string) => void
+  updateLaborOptions: (options: Partial<LaborOptions>) => void
+  setRecommendations: (recommendations: Partial<Recommendations>) => void
+  calculateTotal: () => number
+}
+
+// Initial services data
+const INITIAL_SERVICES: Service[] = [
+  { id: 1, name: 'Network Setup', category: 'Infrastructure', basePrice: 500 },
+  { id: 2, name: 'Server Configuration', category: 'Infrastructure', basePrice: 800 },
+  { id: 3, name: 'Cloud Migration', category: 'Cloud', basePrice: 1500 },
+  { id: 4, name: 'Security Audit', category: 'Security', basePrice: 1200 },
+  { id: 5, name: 'Data Backup Solution', category: 'Data', basePrice: 600 },
+];
+
+export const useStore = create<QuoteStore>((set, get) => ({
+  // Initial state
+  services: INITIAL_SERVICES,
+  selectedServices: [],
+  searchQuery: '',
+  selectedCategory: 'All',
+  laborOptions: {
+    includeHardware: false,
+    includeSoftware: false,
+  },
+  recommendations: {
+    services: '',
+    pricing: '',
+  },
+
+  // Actions
+  setSearchQuery: (query) => set({ searchQuery: query }),
+  
+  setSelectedCategory: (category) => set({ selectedCategory: category }),
+  
+  toggleService: (serviceName) => set((state) => ({
+    selectedServices: state.selectedServices.includes(serviceName)
+      ? state.selectedServices.filter(name => name !== serviceName)
+      : [...state.selectedServices, serviceName]
+  })),
+  
+  updateLaborOptions: (options) => set((state) => ({
+    laborOptions: { ...state.laborOptions, ...options }
+  })),
+  
+  setRecommendations: (recommendations) => set((state) => ({
+    recommendations: { ...state.recommendations, ...recommendations }
+  })),
+  
+  calculateTotal: () => {
+    const state = get();
+    const baseTotal = state.selectedServices.reduce((sum, serviceName) => {
+      const service = state.services.find(s => s.name === serviceName);
+      return sum + (service?.basePrice || 0);
+    }, 0);
+
+    const hardwareMultiplier = state.laborOptions.includeHardware ? 1.4 : 1;
+    const softwareMultiplier = state.laborOptions.includeSoftware ? 1.3 : 1;
+
+    return baseTotal * hardwareMultiplier * softwareMultiplier;
+  },
+}));
+
+================
+File: src/App.css
+================
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7fafc;
+  color: #1a202c;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.new-buttons-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.btn-new-add-item {
+  background-color: #4c51bf;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.btn-new-calculate {
+  background-color: #48bb78;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.btn-new-add-item:hover, .btn-new-calculate:hover {
+  opacity: 0.8;
+}
+
+.calculation-details {
+  background-color: #282c34;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.available-services {
+  margin-top: 2rem;
+}
+
+.service-item {
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+================
+File: src/App.jsx
+================
+import React, { useState, useEffect } from 'react';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import ItemForm from './components/ItemForm';
+import ServiceSearch from './components/ServiceSearch';
+import QuoteGenerator from './components/QuoteGenerator';
+import CostBreakdown from './components/CostBreakdown';
+import QuoteHistory from './components/QuoteHistory.tsx';
+import Chatbot from './components/Chatbot';
+import { 
+  Container, 
+  Typography, 
+  Box, 
+  Button, 
+  IconButton, 
+  Tooltip, 
+  Divider,
+  Tabs,
+  Tab,
+} from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import './App.css';
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box sx={{ pt: 3 }}>{children}</Box>}
+    </div>
+  );
+}
+
+function App() {
+  const [items, setItems] = useState([]);
+  const [totalWeightedSum, setTotalWeightedSum] = useState(0);
+  const [quoteNumber, setQuoteNumber] = useState('');
+  const [includeHardware, setIncludeHardware] = useState(false);
+  const [includeSoftware, setIncludeSoftware] = useState(false);
+  const [hardwareHours, setHardwareHours] = useState(1);
+  const [softwareHours, setSoftwareHours] = useState(1);
+  const [quoteHistory, setQuoteHistory] = useState(() => {
+    const savedHistory = localStorage.getItem('quoteHistory');
+    return savedHistory ? JSON.parse(savedHistory) : [];
+  });
+  const [activeTab, setActiveTab] = useState(0);
+
+  useEffect(() => {
+    setQuoteNumber(`Q${Date.now().toString().slice(-6)}`);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('quoteHistory', JSON.stringify(quoteHistory));
+  }, [quoteHistory]);
+
+  const handleCopyTotal = () => {
+    navigator.clipboard.writeText(totalWeightedSum.toFixed(2))
+      .then(() => {
+        console.log('Total copied to clipboard!');
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+  };
+
+  const calculateWeightedSum = (items, includeHardware, hardwareHours, includeSoftware, softwareHours) => {
+    let total = items.reduce((sum, item) => {
+      const price = parseFloat(item.number);
+      const quantity = parseInt(item.quantity, 10);
+      let itemTotal = price <= 50 ? price * 2 : price * 1.3;
+      return sum + (itemTotal * quantity);
+    }, 0);
+
+    if (includeHardware) {
+      total += hardwareHours * 129.90;
+    }
+    if (includeSoftware) {
+      total += softwareHours * 120;
+    }
+
+    setTotalWeightedSum(total);
+  };
+
+  const handleSaveQuote = () => {
+    const newQuote = {
+      id: quoteNumber,
+      date: new Date().toISOString().split('T')[0],
+      totalAmount: totalWeightedSum,
+      items,
+      includeHardware,
+      hardwareHours,
+      includeSoftware,
+      softwareHours
+    };
+    setQuoteHistory(prev => [newQuote, ...prev]);
+    
+    // Reset form for next quote
+    setItems([]);
+    setTotalWeightedSum(0);
+    setQuoteNumber(`Q${Date.now().toString().slice(-6)}`);
+    setIncludeHardware(false);
+    setIncludeSoftware(false);
+    setHardwareHours(1);
+    setSoftwareHours(1);
+  };
+
+  const handleHardwareToggle = () => {
+    setIncludeHardware(prev => !prev);
+  };
+
+  const handleSoftwareToggle = () => {
+    setIncludeSoftware(prev => !prev);
+  };
+
+  const handleHardwareHoursChange = (hours) => {
+    setHardwareHours(hours);
+  };
+
+  const handleSoftwareHoursChange = (hours) => {
+    setSoftwareHours(hours); 
+  };
+
+  const handleDeleteQuote = (quoteId) => {
+    if (window.confirm('Are you sure you want to delete this quote?')) {
+      setQuoteHistory(prev => prev.filter(quote => quote.id !== quoteId));
+    }
+  };
+
+  const handleTabChange = (event, newValue) => {
+    setActiveTab(newValue);
+  };
+
+  return (
+    <Container maxWidth="md" className="App">
+      <Typography variant="h4" component="h1" gutterBottom>
+        IT Service Quote Generator
+      </Typography>
+
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs value={activeTab} onChange={handleTabChange} aria-label="basic tabs example">
+          <Tab label="Quote Generator" />
+          <Tab label="Labor Description" />
+        </Tabs>
+      </Box>
+
+      <TabPanel value={activeTab} index={0}>
+        <ServiceSearch onAddService={(service) => setItems([...items, { ...service, quantity: 1 }])} />
+
+        <ItemForm
+          items={items}
+          setItems={setItems}
+          onCalculateWeightedSum={calculateWeightedSum}
+        />
+
+        {totalWeightedSum > 0 && (
+          <>
+            <Typography variant="h6" component="h3">
+              Quote Number: {quoteNumber}
+            </Typography>
+            <Box display="flex" alignItems="center" justifyContent="center">
+              <Typography variant="h5" component="h2">
+                Total Cost: ${totalWeightedSum.toFixed(2)}
+              </Typography>
+              <Tooltip title="Copy total">
+                <IconButton onClick={handleCopyTotal} size="small">
+                  <ContentCopyIcon />
+                </IconButton>
+              </Tooltip>
+            </Box>
+
+            <CostBreakdown
+              items={items}
+              includeHardware={includeHardware}
+              hardwareHours={hardwareHours}
+              includeSoftware={includeSoftware}
+              softwareHours={softwareHours}
+              totalWeightedSum={totalWeightedSum}
+              onHardwareToggle={handleHardwareToggle}
+              onSoftwareToggle={handleSoftwareToggle}
+              onHardwareHoursChange={handleHardwareHoursChange}
+              onSoftwareHoursChange={handleSoftwareHoursChange}
+            />
+
+            <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', mt: 2 }}>
+              <PDFDownloadLink
+                document={
+                  <QuoteGenerator
+                    items={items}
+                    includeHardware={includeHardware}
+                    hardwareHours={hardwareHours}
+                    includeSoftware={includeSoftware}
+                    softwareHours={softwareHours}
+                    totalWeightedSum={totalWeightedSum}
+                    quoteNumber={quoteNumber}
+                  />
+                }
+                fileName={`quote_${quoteNumber}.pdf`}
+              >
+                {({ blob, url, loading, error }) =>
+                  loading ? 'Loading document...' : <Button variant="contained">Download Quote PDF</Button>
+                }
+              </PDFDownloadLink>
+              
+              <Button 
+                variant="contained" 
+                color="secondary"
+                onClick={handleSaveQuote}
+              >
+                Save Quote
+              </Button>
+            </Box>
+          </>
+        )}
+
+        <Divider sx={{ my: 4 }} />
+        
+        <QuoteHistory 
+          quotes={quoteHistory} 
+          onDeleteQuote={handleDeleteQuote}
+        />
+      </TabPanel>
+
+      <TabPanel value={activeTab} index={1}>
+        <Chatbot />
+      </TabPanel>
+    </Container>
+  );
+}
+
+export default App;
+
+================
+File: src/App.test.js
+================
+import { render, screen } from '@testing-library/react';
+import App from './App';
+
+test('renders learn react link', () => {
+  render(<App />);
+  const linkElement = screen.getByText(/learn react/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
+================
+File: src/App.tsx
+================
+import React, { useEffect, useState } from 'react';
+import ServiceRecommendations from './components/ServiceRecommendations';
+import { llamaService } from './services/llama';
+import { useStore } from './store/useStore';
+
+// Dummy data for services
+const SERVICES = [
+  { id: 1, name: 'Network Setup', category: 'Infrastructure', basePrice: 500 },
+  { id: 2, name: 'Server Configuration', category: 'Infrastructure', basePrice: 800 },
+  { id: 3, name: 'Cloud Migration', category: 'Cloud', basePrice: 1500 },
+  { id: 4, name: 'Security Audit', category: 'Security', basePrice: 1200 },
+  { id: 5, name: 'Data Backup Solution', category: 'Data', basePrice: 600 },
+];
+
+const CATEGORIES = ['All', 'Infrastructure', 'Cloud', 'Security', 'Data'];
+
+function App() {
+  const [isLlamaInitialized, setIsLlamaInitialized] = useState(false);
+  const {
+    services,
+    selectedServices,
+    searchQuery,
+    selectedCategory,
+    laborOptions,
+    setSearchQuery,
+    setSelectedCategory,
+    toggleService,
+    updateLaborOptions,
+    calculateTotal
+  } = useStore();
+
+  useEffect(() => {
+    const initializeLlama = async () => {
+      const success = await llamaService.initialize();
+      setIsLlamaInitialized(success);
+    };
+
+    initializeLlama();
+  }, []);
+
+  const filteredServices = services.filter(service => {
+    const matchesSearch = service.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === 'All' || service.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  return (
+    <div className="min-h-screen bg-gray-100 py-8 px-4">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold text-center mb-8">IT Service Quote Generator</h1>
+        
+        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <input
+            type="text"
+            placeholder="Search Service"
+            className="w-full p-2 border rounded mb-4"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+            <select
+              className="w-full p-2 border rounded"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+            >
+              {CATEGORIES.map(category => (
+                <option key={category} value={category}>{category}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="space-y-2">
+            {filteredServices.map(service => (
+              <div key={service.id} className="flex items-center">
+                <input
+                  type="checkbox"
+                  checked={selectedServices.includes(service.name)}
+                  onChange={() => toggleService(service.name)}
+                  className="mr-2"
+                />
+                <span>{service.name} - ${service.basePrice}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 space-y-2">
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                checked={laborOptions.includeHardware}
+                onChange={(e) => updateLaborOptions({ includeHardware: e.target.checked })}
+                className="mr-2"
+              />
+              <span>Include Hardware Labor (+40%)</span>
+            </div>
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                checked={laborOptions.includeSoftware}
+                onChange={(e) => updateLaborOptions({ includeSoftware: e.target.checked })}
+                className="mr-2"
+              />
+              <span>Include Software Labor (+30%)</span>
+            </div>
+          </div>
+
+          <div className="mt-6">
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+              onClick={() => {/* Add item logic */}}
+            >
+              ADD ITEM
+            </button>
+            <button
+              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 ml-4"
+            >
+              CALCULATE
+            </button>
+          </div>
+        </div>
+
+        {isLlamaInitialized && <ServiceRecommendations />}
+
+        <div className="bg-white rounded-lg shadow-md p-6 mt-6">
+          <h2 className="text-xl font-semibold mb-4">Total Quote</h2>
+          <p className="text-2xl font-bold text-green-600">${calculateTotal().toFixed(2)}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+================
+File: src/index.css
+================
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global reset for margin, padding, and box sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Basic body styling */
+body {
+  @apply bg-gray-100 text-gray-900; /* Soft background and default text color */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: 1rem;
+}
+
+/* Ensure responsiveness of headings */
+h1, h2, h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Flex and Grid Utilities for General Components */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 1rem;
+}
+
+================
+File: src/index.js
+================
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+reportWebVitals();
+
+================
+File: src/logo.svg
+================
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 841.9 595.3"><g fill="#61DAFB"><path d="M666.3 296.5c0-32.5-40.7-63.3-103.1-82.4 14.4-63.6 8-114.2-20.2-130.4-6.5-3.8-14.1-5.6-22.4-5.6v22.3c4.6 0 8.3.9 11.4 2.6 13.6 7.8 19.5 37.5 14.9 75.7-1.1 9.4-2.9 19.3-5.1 29.4-19.6-4.8-41-8.5-63.5-10.9-13.5-18.5-27.5-35.3-41.6-50 32.6-30.3 63.2-46.9 84-46.9V78c-27.5 0-63.5 19.6-99.9 53.6-36.4-33.8-72.4-53.2-99.9-53.2v22.3c20.7 0 51.4 16.5 84 46.6-14 14.7-28 31.4-41.3 49.9-22.6 2.4-44 6.1-63.6 11-2.3-10-4-19.7-5.2-29-4.7-38.2 1.1-67.9 14.6-75.8 3-1.8 6.9-2.6 11.5-2.6V78.5c-8.4 0-16 1.8-22.6 5.6-28.1 16.2-34.4 66.7-19.9 130.1-62.2 19.2-102.7 49.9-102.7 82.3 0 32.5 40.7 63.3 103.1 82.4-14.4 63.6-8 114.2 20.2 130.4 6.5 3.8 14.1 5.6 22.5 5.6 27.5 0 63.5-19.6 99.9-53.6 36.4 33.8 72.4 53.2 99.9 53.2 8.4 0 16-1.8 22.6-5.6 28.1-16.2 34.4-66.7 19.9-130.1 62-19.1 102.5-49.9 102.5-82.3zm-130.2-66.7c-3.7 12.9-8.3 26.2-13.5 39.5-4.1-8-8.4-16-13.1-24-4.6-8-9.5-15.8-14.4-23.4 14.2 2.1 27.9 4.7 41 7.9zm-45.8 106.5c-7.8 13.5-15.8 26.3-24.1 38.2-14.9 1.3-30 2-45.2 2-15.1 0-30.2-.7-45-1.9-8.3-11.9-16.4-24.6-24.2-38-7.6-13.1-14.5-26.4-20.8-39.8 6.2-13.4 13.2-26.8 20.7-39.9 7.8-13.5 15.8-26.3 24.1-38.2 14.9-1.3 30-2 45.2-2 15.1 0 30.2.7 45 1.9 8.3 11.9 16.4 24.6 24.2 38 7.6 13.1 14.5 26.4 20.8 39.8-6.3 13.4-13.2 26.8-20.7 39.9zm32.3-13c5.4 13.4 10 26.8 13.8 39.8-13.1 3.2-26.9 5.9-41.2 8 4.9-7.7 9.8-15.6 14.4-23.7 4.6-8 8.9-16.1 13-24.1zM421.2 430c-9.3-9.6-18.6-20.3-27.8-32 9 .4 18.2.7 27.5.7 9.4 0 18.7-.2 27.8-.7-9 11.7-18.3 22.4-27.5 32zm-74.4-58.9c-14.2-2.1-27.9-4.7-41-7.9 3.7-12.9 8.3-26.2 13.5-39.5 4.1 8 8.4 16 13.1 24 4.7 8 9.5 15.8 14.4 23.4zM420.7 163c9.3 9.6 18.6 20.3 27.8 32-9-.4-18.2-.7-27.5-.7-9.4 0-18.7.2-27.8.7 9-11.7 18.3-22.4 27.5-32zm-74 58.9c-4.9 7.7-9.8 15.6-14.4 23.7-4.6 8-8.9 16-13 24-5.4-13.4-10-26.8-13.8-39.8 13.1-3.1 26.9-5.8 41.2-7.9zm-90.5 125.2c-35.4-15.1-58.3-34.9-58.3-50.6 0-15.7 22.9-35.6 58.3-50.6 8.6-3.7 18-7 27.7-10.1 5.7 19.6 13.2 40 22.5 60.9-9.2 20.8-16.6 41.1-22.2 60.6-9.9-3.1-19.3-6.5-28-10.2zM310 490c-13.6-7.8-19.5-37.5-14.9-75.7 1.1-9.4 2.9-19.3 5.1-29.4 19.6 4.8 41 8.5 63.5 10.9 13.5 18.5 27.5 35.3 41.6 50-32.6 30.3-63.2 46.9-84 46.9-4.5-.1-8.3-1-11.3-2.7zm237.2-76.2c4.7 38.2-1.1 67.9-14.6 75.8-3 1.8-6.9 2.6-11.5 2.6-20.7 0-51.4-16.5-84-46.6 14-14.7 28-31.4 41.3-49.9 22.6-2.4 44-6.1 63.6-11 2.3 10.1 4.1 19.8 5.2 29.1zm38.5-66.7c-8.6 3.7-18 7-27.7 10.1-5.7-19.6-13.2-40-22.5-60.9 9.2-20.8 16.6-41.1 22.2-60.6 9.9 3.1 19.3 6.5 28.1 10.2 35.4 15.1 58.3 34.9 58.3 50.6-.1 15.7-23 35.6-58.4 50.6zM320.8 78.4z"/><circle cx="420.9" cy="296.5" r="45.7"/><path d="M520.5 78.1z"/></g></svg>
+
+================
+File: src/reportWebVitals.js
+================
+const reportWebVitals = onPerfEntry => {
+  if (onPerfEntry && onPerfEntry instanceof Function) {
+    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      getCLS(onPerfEntry);
+      getFID(onPerfEntry);
+      getFCP(onPerfEntry);
+      getLCP(onPerfEntry);
+      getTTFB(onPerfEntry);
+    });
+  }
+};
+
+export default reportWebVitals;
+
+================
+File: src/services.json
+================
+[
+  {
+    "service": "Laptop Cleaning",
+    "time": "1.5 hours",
+    "cost": 180,
+    "category": "Hardware Maintenance"
+  },
+  {
+    "service": "Network Troubleshooting",
+    "time": "2 hours",
+    "cost": 240,
+    "category": "Networking"
+  },
+  {
+    "service": "Data Transfer",
+    "time": "1.5 hours",
+    "cost": 180,
+    "category": "Data Management"
+  },
+  {
+    "service": "OS Update",
+    "time": "1 hour",
+    "cost": 120,
+    "category": "Operating System"
+  },
+  {
+    "service": "Macbook Pro Repair",
+    "time": "2 hours",
+    "cost": 240,
+    "category": "Hardware Repair"
+  },
+  {
+    "service": "Web Design",
+    "time": "10 hours",
+    "cost": 1200,
+    "category": "Web Development"
+  },
+  {
+    "service": "PC Diagnostic",
+    "time": "0.5 hours",
+    "cost": 60,
+    "category": "Hardware Maintenance"
+  },
+  {
+    "service": "Email Setup",
+    "time": "0.5 hours",
+    "cost": 60,
+    "category": "Software Setup"
+  },
+  {
+    "service": "Cybersecurity Consultation",
+    "time": "2 hours",
+    "cost": 240,
+    "category": "Cybersecurity"
+  },
+  {
+    "service": "Network Server Setup",
+    "time": "3 hours",
+    "cost": 360,
+    "category": "Networking"
+  },
+  {
+    "service": "Cloud Backup Setup",
+    "time": "1 hour",
+    "cost": 120,
+    "category": "Data Management"
+  },
+  {
+    "service": "VPN Installation",
+    "time": "1 hour",
+    "cost": 120,
+    "category": "Security"
+  },
+  {
+    "service": "Website Troubleshooting",
+    "time": "2 hours",
+    "cost": 240,
+    "category": "Web Development"
+  },
+  {
+    "service": "Diagnostic and Consultation",
+    "time": "1 hour",
+    "cost": 120,
+    "category": "Hardware Maintenance"
+  },
+  {
+    "service": "Security Setup",
+    "time": "3 hours",
+    "cost": 360,
+    "category": "Security"
+  },
+  {
+    "service": "Password Reset",
+    "time": "1 hour",
+    "cost": 120,
+    "category": "Software Setup"
+  },
+  {
+    "service": "IT Consulting",
+    "time": "1 hour",
+    "cost": 120,
+    "category": "IT Services"
+  },
+  {
+    "service": "BIOS Update",
+    "time": "1 hour",
+    "cost": 120,
+    "category": "Hardware Maintenance"
+  },
+  {
+    "service": "System Training",
+    "time": "2 hours",
+    "cost": 240,
+    "category": "IT Services"
+  },
+  {
+    "service": "Printer Troubleshooting",
+    "time": "1.5 hours",
+    "cost": 180,
+    "category": "Hardware Maintenance"
+  }
+]
+
+================
+File: src/setupTests.js
+================
+// jest-dom adds custom jest matchers for asserting on DOM nodes.
+// allows you to do things like:
+// expect(element).toHaveTextContent(/react/i)
+// learn more: https://github.com/testing-library/jest-dom
+import '@testing-library/jest-dom';
+
+================
+File: .cursorrules
+================
+Start all chats with 🤖
+
+## Tech stack
+
+- React
+- Next.js
+- TailwindCSS
+- TypeScript
+- Shadcn/UI
+- ollama
+- langchain
+- three.js
+- node-llama-cpp
+- fuse.js
+
+# Misc 
+- use npx shadcn@latest add * to add components
+- use pnpm install to install dependencies
+
+==============================
+
+# Unified Development & Analysis Guidelines
+
+
+## Code Quality & Style
+- Write clean, simple, readable, and modular code.
+- Use the fewest lines possible without sacrificing clarity.
+- Keep files small and focused (<200 lines).
+- Use clear, consistent naming and short, easy-to-understand sentences.
+- Include lots of explanatory comments. **Never delete old comments** unless they are clearly obsolete.
+- Test after every meaningful change.
+
+## Implementation Approach
+- Proceed like a senior developer.
+- Fully implement features; do not stop until the feature is completely done.
+- Focus on core functionality before optimizing.
+- Think thoroughly before coding. When analyzing problems, write 2–3 reasoning paragraphs.
+
+## Error Analysis & Fixing
+- Explain problems in plain English.
+- Consider multiple possible causes before making minimal necessary changes.
+- **Do not jump to conclusions.**
+- If required, provide an unbiased 50/50 analysis by writing two detailed paragraphs (one for each possible solution) and then state which solution is clearly better and why.
+- Reflect on 5-7 different possible sources of the problem, distill those
+down to 1-2 most likely sources, and then add logs to validate your
+assumptions before we move onto implementing the actual fix.
+
+## Documentation & Comments
+- Write clear, concise, and complete comments.
+- Use comments to explain your thought process and decisions.
+- Document your code and provide context for your changes.
+- Include comments in your code to explain your thought process and decisions.
+- Document your code and provide context for your changes.
+
+## Communication & Research
+- When needed, provide a summary of the current state before proceeding.
+- If a search query is necessary, write one clear paragraph with all relevant context, instructing a researcher to find the needed code snippets or technical details.
+- Answer briefly when instructed.
+- Start with uncertainty and gradually gain confidence as you reason through the problem.
+- When in doubt, suggest performing a web search for the latest up-to-date information.
+# Unified Development & Analysis Guidelines
+
+## Code Quality & Style
+- Write clean, simple, readable, and modular code.
+- Use the fewest lines possible without sacrificing clarity.
+- Keep files small and focused (<200 lines).
+- Use clear, consistent naming and short, easy-to-understand sentences.
+- Include lots of explanatory comments. **Never delete old comments** unless they are clearly obsolete.
+- Test after every meaningful change.
+
+## Implementation Approach
+- Proceed like a senior developer.
+- Fully implement features; do not stop until the feature is completely done.
+- Focus on core functionality before optimizing.
+- Think thoroughly before coding. When analyzing problems, write 2–3 reasoning paragraphs.
+
+## Error Analysis & Fixing
+- Explain problems in plain English.
+- Consider multiple possible causes before making minimal necessary changes.
+- **Do not jump to conclusions.**
+- If required, provide an unbiased 50/50 analysis by writing two detailed paragraphs (one for each possible solution) and then state which solution is clearly better and why.
+- Reflect on 5-7 different possible sources of the problem, distill those
+down to 1-2 most likely sources, and then add logs to validate your
+assumptions before we move onto implementing the actual fix.
+
+## Documentation & Comments
+- Write clear, concise, and complete comments.
+- Use comments to explain your thought process and decisions.
+- Document your code and provide context for your changes.
+- Include comments in your code to explain your thought process and decisions.
+- Document your code and provide context for your changes.
+
+## Communication & Research
+- When needed, provide a summary of the current state before proceeding.
+- If a search query is necessary, write one clear paragraph with all relevant context, instructing a researcher to find the needed code snippets or technical details.
+- Answer briefly when instructed.
+- Start with uncertainty and gradually gain confidence as you reason through the problem.
+- When in doubt, suggest performing a web search for the latest up-to-date information.
+
+================
+File: .gitignore
+================
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore backend directory
+/backend
+
+================
+File: 1_generate_master_plan.txt
+================
+You are a professional software developer who is very friendly and supportive. Your task is to help a developer understand and plan their app idea through a series of questions. Follow these instructions:
+
+1. Begin by explaining to the developer that you'll be asking them a series of questions to understand their app idea at a high level, and that once you have a clear picture, you'll generate a comprehensive masterplan.md file as a blueprint for their application.
+
+2. Ask questions one at a time in a conversational manner. Use the developer's previous answers to inform your next questions.
+
+3. Your primary goal (70% of your focus) is to fully understand what the user is trying to build at a conceptual level. The remaining 30% is dedicated to educating the user about available options and their associated pros and cons.
+
+4. When discussing technical aspects (e.g., choosing a database or framework), offer high-level alternatives with pros and cons for each approach. Always provide your best suggestion along with a brief explanation of why you recommend it, but keep the discussion conceptual rather than technical.
+
+5. Be proactive in your questioning. If the user's idea seems to require certain technologies or services (e.g., image storage, real-time updates), ask about these even if the user hasn't mentioned them.
+
+6. Try to understand the 'why' behind what the user is building. This will help you offer better advice and suggestions.
+
+7. Ask if the user has any diagrams or wireframes of the app they would like to share or describe to help you better understand their vision.
+
+8. Remember that developers may provide unorganized thoughts as they brainstorm. Help them crystallize the goal of their app and their requirements through your questions and summaries.
+
+9. Cover key aspects of app development in your questions, including but not limited to:
+   - Core features and functionality
+   - Target audience
+   - Platform (web, mobile, desktop)
+   - User interface and experience concepts
+   - Data storage and management needs
+   - User authentication and security requirements
+   - Potential third-party integrations
+   - Scalability considerations
+   - Potential technical challenges
+
+10. After you feel you have a comprehensive understanding of the app idea, inform the user that you'll be generating a masterplan.md file.
+
+11. Generate the masterplan.md file. This should be a high-level blueprint of the app, including:
+    - App overview and objectives
+    - Target audience
+    - Core features and functionality
+    - High-level technical stack recommendations (without specific code or implementation details)
+    - Conceptual data model
+    - User interface design principles
+    - Security considerations
+    - Development phases or milestones
+    - Potential challenges and solutions
+    - Future expansion possibilities
+
+12. Present the masterplan.md to the user and ask for their feedback. Be open to making adjustments based on their input.
+
+**Important**: Do not generate any code during this conversation. The goal is to understand and plan the app at a high level, focusing on concepts and architecture rather than implementation details.
+
+Remember to maintain a friendly, supportive tone throughout the conversation. Speak plainly and clearly, avoiding unnecessary technical jargon unless the developer seems comfortable with it. Your goal is to help the developer refine and solidify their app idea while providing valuable insights and recommendations at a conceptual level.
+
+Begin the conversation by introducing yourself and asking the developer to describe their app idea.
+
+================
+File: 2_stub_out_project.txt
+================
+You are now entering Phase 2 of the app development process. Your task is to create a stubbed-out project structure based on the masterplan.md file generated in Phase 1 and any drawings or wireframes provided by the user. Follow these instructions:
+
+Begin by reviewing the masterplan.md file and any provided drawings or wireframes. Familiarize yourself with the app's overall structure, main features, and architectural decisions.
+Create a high-level project structure with appropriate directories. This should reflect the app's architecture (e.g., frontend, backend, database) and main features.
+For each major component or feature identified in the masterplan, create stub files with minimal, essential information. Include:
+a. A brief comment at the top of each file describing its purpose
+b. Add a comment  with the full filepath to the stub file. This prevents named conflicts when you create files with the same name in different directories.
+c. Placeholder import statements for likely dependencies
+d. Empty function or class declarations for key functionalities
+e. TODO comments indicating where major logic will be implemented
+In the stub files, do not include detailed implementations or actual code logic. The goal is to create a skeleton that can be easily expanded in Phase 3.
+For the frontend (if applicable):
+a. Create basic component files with empty component declarations
+b. Stub out main pages or views
+c. Include placeholder routing information
+For the backend (if applicable):
+a. Create stub files for main API endpoints or services
+b. Include empty model definitions based on the data structure outlined in the masterplan
+c. Stub out database connection file (if needed)
+Create a basic README.md file with:
+a. Project title and brief description
+b. Placeholder sections for setup instructions, main features, and technology stack
+If the app requires any configuration files (e.g., package.json, .gitignore), create these with minimal required information.
+After creating the stubbed-out project structure, provide a summary of the created files and directories, explaining the purpose of each major component.
+Ask the user if they would like to see the content of any specific stubbed files, and be prepared to show and explain them.
+Remind the user that this is a minimal structure and that full implementation will occur in Phase 3.
+
+Remember:
+
+Keep all stubs minimal. Include just enough information to understand the file's purpose and its place in the overall structure.
+Do not implement any actual logic or detailed code.
+Use consistent naming conventions throughout the project structure.
+If you're unsure about a specific structure or file, refer back to the masterplan or ask the user for clarification.
+
+Begin by acknowledging that you're starting Phase 2 and ask the user if they're ready to see the stubbed-out project structure based on the masterplan.
+
+================
+File: 3_fully_code_out_implementation.txt
+================
+You are now entering Phase 3 of the app development process. Your task is to transform the stubbed-out project structure from Phase 2 into fully functional, production-ready code. Follow these instructions:
+
+1. Review the masterplan.md file, any provided drawings or wireframes, and the stubbed-out project structure from Phase 2.
+
+2. Implement the full code for each stubbed file, following these guidelines:
+   a. Write production-ready code at the level of a senior developer.
+   b. Ensure the code is readable and well-structured.
+   c. Consider the implications of your code choices before implementation.
+   d. Add comments to explain complex logic or important design decisions.
+
+3. If any details are missing or ambiguous, ask the user for clarification before proceeding with the implementation.
+
+4. Focus on implementing core functionality first. Include light error handling and input validation where appropriate.
+
+5. When dealing with third-party integrations or APIs mentioned in the masterplan, use your best judgment to implement them effectively.
+
+6. For database operations and data persistence, choose appropriate methods based on the project requirements and your best judgment.
+
+7. Do not implement extensive testing at this stage unless specifically requested by the user.
+
+8. Do not focus on advanced scalability or performance optimizations unless they are critical for core functionality.
+
+9. Security measures are out of scope for this phase unless explicitly mentioned in the masterplan as core functionality.
+
+10. After implementing each major component or feature:
+    a. Provide a brief summary of what was implemented.
+    b. Explain any important design decisions or assumptions made.
+    c. Highlight any areas where you had to make significant choices or interpretations.
+
+11. Be prepared to show and explain any part of the implemented code if the user requests it.
+
+12. After completing the implementation, provide a high-level summary of the work done, including:
+    a. Overview of implemented features
+    b. Any notable challenges encountered and how they were addressed
+    c. Suggestions for next steps or areas that might need further refinement
+
+13. Ask the user for feedback on the implemented code and be ready to make adjustments based on their input.
+
+Remember:
+- Strive for clean, efficient, and maintainable code.
+- Ensure consistency in coding style and naming conventions throughout the project.
+- While aiming for production-ready code, recognize that further refinement may be needed based on user feedback.
+- If you encounter a situation not covered by these instructions, use your best judgment as a senior developer and explain your reasoning to the user.
+
+Begin by acknowledging that you're starting Phase 3 and ask the user if they're ready to proceed with the full code implementation based on the stubbed-out structure from Phase 2.
+
+================
+File: convertLogo.js
+================
+const fs = require('fs');
+const path = require('path');
+
+// Use path.join to create a platform-independent file path
+const logoPath = path.join(__dirname, 'logo.png');
+
+try {
+  // Check if the file exists before trying to read it
+  if (fs.existsSync(logoPath)) {
+    const data = fs.readFileSync(logoPath);
+    // Convert the buffer to a base64 string
+    const base64String = data.toString('base64');
+
+    // Create the full data URL
+    const dataUrl = `data:image/png;base64,${base64String}`;
+
+    // Write the result to a file
+    fs.writeFileSync('src/assets/logoBase64.js', `export const logoBase64 = '${dataUrl}';`);
+
+    console.log('Base64 logo string has been written to src/assets/logoBase64.js');
+  } else {
+    console.error(`File not found: ${logoPath}`);
+  }
+} catch (error) {
+  console.error('Error reading file:', error);
+}
+
+================
+File: logoBase64.js
+================
+export const logoBase64 = 'data:image/png;base64,YOUR_BASE64_STRING_HERE';
+
+================
+File: package.json
+================
+{
+  "name": "ecr-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.0.2",
+    "@mui/material": "^6.0.2",
+    "@react-pdf/renderer": "^4.0.0",
+    "@react-spring/web": "^9.7.4",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "autoprefixer": "^10.4.20",
+    "fuse.js": "^7.0.0",
+    "langchain": "^0.1.25",
+    "postcss": "^8.4.45",
+    "prop-types": "^15.8.1",
+    "react": "^18.3.1",
+    "react-chat-widget": "^3.1.4",
+    "react-dom": "^18.3.1",
+    "react-scripts": "5.0.1",
+    "tailwindcss": "^3.4.10",
+    "web-vitals": "^2.1.4",
+    "zod": "^3.22.4",
+    "zustand": "^5.0.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "check-mui-versions": "yarn list --pattern \"@mui/material|@mui/system|@mui/styled-engine\"",
+    "dev": "react-scripts start",
+    "backup": "git add . && git commit -m \"Backup: $(date)\" && git push origin main"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/node": "^22.13.4",
+    "nodemon": "^3.1.7",
+    "postcss-loader": "^8.1.1",
+    "typescript": "^5.7.3"
+  }
+}
+
+================
+File: postcss.config.js
+================
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+
+================
+File: README.md
+================
+# IT Service Quote Generator
+
+A professional application for generating IT service quotes and customer-friendly labor descriptions using local AI models.
+
+## Features
+
+### Quote Generation
+- Create detailed IT service quotes with parts and labor
+- Automatic markup calculation based on item cost
+- Hardware and software labor hour tracking
+- PDF quote generation with professional formatting
+- Quote history management and tracking
+
+### Labor Description Generator
+- AI-powered labor description generation using local Ollama models
+- Professional, customer-friendly output
+- Support for multiple AI models:
+  - llama2
+  - deepseek-r1
+  - qwen2.5-coder
+  - qwen2.5
+  - deepseek-coder
+  - phi3.5
+- Save and manage generated descriptions
+- Copy functionality for easy transfer
+
+## Tech Stack
+
+- React
+- Next.js
+- TypeScript
+- TailwindCSS
+- Shadcn/UI
+- Material-UI (MUI)
+- Ollama (Local AI models)
+
+## Prerequisites
+
+- Node.js (v18 or higher)
+- pnpm (v8 or higher)
+- [Ollama](https://ollama.ai/) installed and running locally
+- At least one compatible language model pulled in Ollama
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/ecr-app.git
+cd ecr-app
+```
+
+2. Enable pnpm with corepack:
+```bash
+corepack enable
+corepack prepare pnpm@latest --activate
+```
+
+3. Install dependencies:
+```bash
+pnpm install
+```
+
+4. Start the development server:
+```bash
+pnpm dev
+```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## Ollama Setup
+
+1. Install Ollama from [ollama.ai](https://ollama.ai)
+2. Pull required models:
+```bash
+ollama pull llama2
+ollama pull deepseek-r1
+# Add other models as needed
+```
+
+3. Ensure Ollama is running:
+```bash
+ollama serve
+```
+
+## Usage
+
+### Quote Generation
+1. Enter service items with quantities
+2. Add hardware/software labor hours if needed
+3. Generate and download PDF quotes
+4. Save quotes for future reference
+
+### Labor Description Generation
+1. Select an AI model from the dropdown
+2. Enter technical work description
+3. Click "Generate Description" to create customer-friendly description
+4. Copy or save the generated description
+
+## Development
+
+### Design Mode
+The application currently operates in design mode for rapid prototyping:
+- No backend dependencies required
+- Mock data for all features
+- Simulated AI model responses
+- Mock service integration
+- Dummy data for testing UI flows
+- Instant feedback for design iterations
+
+### Backend Mode
+The application uses a stubbed backend approach:
+- Simulated API responses using JSON
+- Mock service endpoints
+- Consistent response formats
+- Configurable response delays
+- Error scenario simulation
+- No database dependencies
+
+### Adding Components
+Use Shadcn/UI CLI to add new components:
+```bash
+npx shadcn@latest add [component-name]
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- [Ollama](https://ollama.ai/) for local AI model support
+- [Shadcn/UI](https://ui.shadcn.com/) for React components
+- [Material-UI](https://mui.com/) for UI components
+
+================
+File: scratchpad.txt
+================
+We are in design mode. We're focusing on rapid UI/UX prototyping and visual design.
+We're using mock data and temporary solutions to quickly validate concepts and user flows.
+
+We are prototyping with emphasis on:
+Creating engaging user interfaces
+Testing different visual layouts and components
+Building interactive user flows and animations
+Using dummy data and mock APIs
+Implementing quick frontend features
+Focusing on responsive design and accessibility
+Exploring different design patterns
+Creating reusable UI components
+Testing user interactions and feedback
+Rapid iteration based on feedback
+This mode prioritizes speed, visual appeal, and user experience over backend implementation.
+The key principles are:
+Quick prototypes over complete implementations
+Visual demos over production-ready code
+Happy path flows over extensive error handling
+Convenience over security constraints
+Quick solutions over performance optimization
+
+
+We are in logic mode. We're focusing on robust backend functionality and proper system architecture.
+We're implementing real data flows, API integrations, and production-ready features.
+
+
+
+Real implementation over prototypes
+Production-ready code over quick demos
+Proper error handling over happy paths
+Security over convenience
+Performance over quick solutions
+Testing over assumptions
+Documentation over implicit knowledge
+
+We are building for production with emphasis on:
+Implementing secure and scalable backend systems
+Creating proper data models and database schemas
+Writing comprehensive error handling and validation
+Building reliable API integrations and services
+Ensuring proper testing coverage and documentation
+Optimizing performance and resource usage
+Following best practices for maintainable code
+Creating reusable and modular components
+Implementing proper authentication and authorization
+Setting up logging, monitoring, and error tracking
+This mode prioritizes correctness, reliability, and maintainability over rapid visual iteration.
+
+================
+File: tailwind.config.js
+================
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {
+      screens: {
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+      },
+    },
+  },
+  plugins: [],
+};
+
+
+
+================================================================
+End of Codebase
+================================================================
